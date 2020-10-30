@@ -18,22 +18,22 @@ namespace DataLayer
             set { author = value; }
         }
 
-        private Type type;
-        public Type Genre
+        private BType type;
+        public BType Genre
         {
             get { return type; }
             set { type = value; }
         }
 
-        private Status status;
-        public Status Stat
+        private BStatus status;
+        public BStatus Stat
         {
             get { return status; }
             set { status = value; }
         }
 
-        private int returnDate;
-        public int ReturnDate
+        private DateTime returnDate;
+        public DateTime ReturnDate
         {
             get { return returnDate; }
             set { returnDate = value; }
@@ -46,7 +46,7 @@ namespace DataLayer
             set { pricePerDayOverduedInCents = value; }
         }
 
-        public Book(String t, String a, Type ty, Status s, int rd, int prd)
+        public Book(String t, String a, BType ty, BStatus s, DateTime rd, int prd)
         {
             title = t;
             author = a;
@@ -63,7 +63,7 @@ namespace DataLayer
 
     }
 
-    public enum Type
+    public enum BType
     {
         Drama,
         Fantasy,
@@ -77,7 +77,7 @@ namespace DataLayer
         Thriller
     }
 
-    public enum Status
+    public enum BStatus
     {
         Available,
         Out

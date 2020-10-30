@@ -1,5 +1,6 @@
 using DataLayer;
 using NUnit.Framework;
+using System;
 
 namespace ShopTest
 {
@@ -10,18 +11,19 @@ namespace ShopTest
         {
         }
 
+            // Data Layer Tests
         [Test]
         public void TestBook()
         {
-            Book book1 = new Book("Dune", "Frank Herbert", Type.SciFi, Status.Available, 0, 25);
-            Book book2 = new Book("Dune", "Frank Herbert", Type.SciFi, Status.Available, 0, 25);
-            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", Type.Fantasy, Status.Available, 0, 25);
+            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, BStatus.Available, DateTime.Today, 25);
+            Book book2 = new Book("Dune", "Frank Herbert", BType.SciFi, BStatus.Available, DateTime.Today, 25);
+            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", BType.Fantasy, BStatus.Available, DateTime.Today, 25);
 
             Assert.AreEqual(book1.Title, "Dune");
             Assert.AreEqual(book1.Author, "Frank Herbert");
-            Assert.AreEqual(book1.Genre, Type.SciFi);
-            Assert.AreEqual(book1.Stat, Status.Available);
-            Assert.AreEqual(book1.ReturnDate, 0);
+            Assert.AreEqual(book1.Genre, BType.SciFi);
+            Assert.AreEqual(book1.Stat, BStatus.Available);
+            Assert.AreEqual(book1.ReturnDate, DateTime.Today);
             Assert.AreEqual(book1.PricePerDayOverduedInCents, 25);
 
             Assert.AreEqual(book1, book2);
@@ -41,21 +43,26 @@ namespace ShopTest
             Assert.AreEqual(customer1, customer2);
             Assert.AreNotEqual(customer1, customer3);
 
-            Book book1 = new Book("Dune", "Frank Herbert", Type.SciFi, Status.Available, 0, 25);
+            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, BStatus.Available, DateTime.Today, 25);
             Customer customer = new Customer("Paul", 10000);
 
             customer.Borrowed.Add(book1);
 
             Assert.AreEqual(customer.Borrowed.Count, 1);
             Assert.IsTrue(customer.Borrowed.Contains(book1));
+
+            customer.Basket.Add(book1);
+
+            Assert.AreEqual(customer.Basket.Count, 1);
+            Assert.IsTrue(customer.Basket.Contains(book1));
         }
 
         [Test]
         public void TestInvoice()
         {
-            Book book1 = new Book("Dune", "Frank Herbert", Type.SciFi, Status.Available, 0, 25);
-            Book book2 = new Book("Hunger Games", "Collins", Type.SciFi, Status.Available, 0, 15);
-            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", Type.Fantasy, Status.Available, 0, 5);
+            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, BStatus.Available, DateTime.Today, 25);
+            Book book2 = new Book("Hunger Games", "Collins", BType.SciFi, BStatus.Available, DateTime.Today, 15);
+            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", BType.Fantasy, BStatus.Available, DateTime.Today, 5);
 
             Customer customer = new Customer("Paul", 10000);
 
@@ -72,9 +79,9 @@ namespace ShopTest
         [Test]
         public void TestEvent()
         {
-            Book book1 = new Book("Dune", "Frank Herbert", Type.SciFi, Status.Available, 0, 25);
-            Book book2 = new Book("Hunger Games", "Collins", Type.SciFi, Status.Available, 0, 15);
-            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", Type.Fantasy, Status.Available, 0, 5);
+            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, BStatus.Available, DateTime.Today, 25);
+            Book book2 = new Book("Hunger Games", "Collins", BType.SciFi, BStatus.Available, DateTime.Today, 15);
+            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", BType.Fantasy, BStatus.Available, DateTime.Today, 5);
 
             Customer customer = new Customer("Paul", 10000);
 
@@ -92,5 +99,8 @@ namespace ShopTest
             Assert.AreEqual(event1.GetInvoice.Books, invoice.Books);
             Assert.AreEqual(event1.GetInvoice.Books, customer.Borrowed);
         }
+
+            // Logic Layer Tests
+
     }
 }

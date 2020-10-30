@@ -27,12 +27,19 @@ namespace DataLayer
             set { borrowed = value; }
         }
 
+        private List<Book> basket;
+        public List<Book> Basket
+        {
+            get { return basket; }
+            set { basket = value; }
+        }
 
         public Customer(String n, int m)
         {
             name = n;
             moneyInCents = m;
             borrowed = new List<Book>();
+            basket = new List<Book>();
         }
 
         public bool Equals(Customer other)
