@@ -4,12 +4,47 @@ namespace DataLayer
 {
     public class Book : IEquatable<Book>
     {
-        private String title { get; }
-        private String author { get; }
-        private Type type { get; }
-        private Status status { get; set; }
-        private int returnDate { get; set; }
-        private int pricePerDayOverduedInCents { get; set; }
+        private String title;
+        public String Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        private String author;
+        public String Author
+        {
+            get { return author; }
+            set { author = value; }
+        }
+
+        private Type type;
+        public Type Genre
+        {
+            get { return type; }
+            set { type = value; }
+        }
+
+        private Status status;
+        public Status Stat
+        {
+            get { return status; }
+            set { status = value; }
+        }
+
+        private int returnDate;
+        public int ReturnDate
+        {
+            get { return returnDate; }
+            set { returnDate = value; }
+        }
+
+        private int pricePerDayOverduedInCents;
+        public int PricePerDayOverduedInCents
+        {
+            get { return pricePerDayOverduedInCents; }
+            set { pricePerDayOverduedInCents = value; }
+        }
 
         public Book(String t, String a, Type ty, Status s, int rd, int prd)
         {
@@ -25,6 +60,7 @@ namespace DataLayer
         {
             return this.title == other.title && this.author == other.author;
         }
+
     }
 
     public enum Type

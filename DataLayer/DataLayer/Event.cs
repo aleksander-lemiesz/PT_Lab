@@ -4,11 +4,22 @@ using System.Text;
 
 namespace DataLayer
 {
-    class Event
+    public class Event
     {
-        private String name { get; }
-        private Invoice invoice { get; set; }
-        
+        private String name;
+        public String Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        private Invoice invoice;
+        public Invoice GetInvoice
+        {
+            get { return invoice; }
+            set { invoice = value; }
+        }
+
         public Event(String n)
         {
             name = n;
