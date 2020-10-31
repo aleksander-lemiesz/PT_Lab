@@ -25,13 +25,6 @@ namespace DataLayer
             set { type = value; }
         }
 
-        private BStatus status;
-        public BStatus Stat
-        {
-            get { return status; }
-            set { status = value; }
-        }
-
         private DateTime returnDate;
         public DateTime ReturnDate
         {
@@ -46,13 +39,12 @@ namespace DataLayer
             set { pricePerDayOverduedInCents = value; }
         }
 
-        public Book(String t, String a, BType ty, BStatus s, DateTime rd, int prd)
+        public Book(String t, String a, BType ty, int prd)
         {
             title = t;
             author = a;
             type = ty;
-            status = s;
-            returnDate = rd;
+            returnDate = DateTime.Today;
             pricePerDayOverduedInCents = prd;
         }
 
@@ -75,11 +67,5 @@ namespace DataLayer
         Romance,
         SciFi,
         Thriller
-    }
-
-    public enum BStatus
-    {
-        Available,
-        Out
     }
 }

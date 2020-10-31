@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LogicLayer
 {
-    class LibraryLogic
+    public class LibraryLogic
     {
         private Library library;
         public Library GetLibrary
@@ -127,13 +127,12 @@ namespace LogicLayer
         public int BookPenalty(Book b)
         {
             int penalty = 0;
-            var today = DateTime.Today;
-            int days;
-
+            DateTime today = DateTime.Today;
+            TimeSpan days;
             if (DateTime.Compare(today, b.ReturnDate) > 0)
             {
-                days = today.Subtract(b.ReturnDate).Days;
-                penalty = days * b.PricePerDayOverduedInCents;
+                days = today - b.ReturnDate;
+                penalty = days.Days * b.PricePerDayOverduedInCents;
             }
             return penalty;
         }
@@ -148,7 +147,7 @@ namespace LogicLayer
             return penalty;
         }
 
-        private void Pay(Customer c)
+        public void Pay(Customer c)
         {
             c.MoneyInCents -= TotalPenalty(c);
         }
