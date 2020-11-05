@@ -16,9 +16,9 @@ namespace LogicLayerTest
         [Test]
         public void CustomerLogicTest()
         {
-            LibraryLogic logic = new LibraryLogic();
+            LibraryLogic logic = new LibraryLogic(new Library());
 
-            Customer c = new Customer("Paul", 10000);
+            AbstCustomer c = new Customer("Paul", 1, 10000);
 
             logic.AddCustomer(c);
 
@@ -38,8 +38,8 @@ namespace LogicLayerTest
         [Test]
         public void CatalogLogicTest()
         {
-            var logic = new LibraryLogic();
-            var b = new Book("Dune", "Herbert", BType.SciFi, 25);
+            LibraryLogic logic = new LibraryLogic(new Library());
+            var b = new Book("Dune", "Herbert", BType.SciFi, 25, 1);
 
             logic.AddToCatalog(b);
 
@@ -56,8 +56,8 @@ namespace LogicLayerTest
         [Test]
         public void StockLogicTest()
         {
-            var logic = new LibraryLogic();
-            var b = new Book("Dune", "Herbert", BType.SciFi, 25);
+            LibraryLogic logic = new LibraryLogic(new Library());
+            var b = new Book("Dune", "Herbert", BType.SciFi, 25, 1);
 
             logic.AddToStock(b);
 
@@ -75,9 +75,9 @@ namespace LogicLayerTest
         [Test]
         public void AddToBasketTest()
         {
-            var logic = new LibraryLogic();
-            var c = new Customer("Paul", 10000);
-            var b = new Book("Dune", "Herbert", BType.SciFi, 25);
+            LibraryLogic logic = new LibraryLogic(new Library());
+            AbstCustomer c = new Customer("Paul", 1, 10000);
+            AbstBook b = new Book("Dune", "Herbert", BType.SciFi, 25, 1);
 
             Assert.IsFalse(logic.AddToBasket(c, b));
 
@@ -101,9 +101,9 @@ namespace LogicLayerTest
         [Test]
         public void BorrowTest()
         {
-            var logic = new LibraryLogic();
-            var c = new Customer("Paul", 10000);
-            var b = new Book("Dune", "Herbert", BType.SciFi, 25);
+            LibraryLogic logic = new LibraryLogic(new Library());
+            AbstCustomer c = new Customer("Paul", 1, 10000);
+            AbstBook b = new Book("Dune", "Herbert", BType.SciFi, 25, 1);
 
             logic.AddCustomer(c);
             logic.AddToCatalog(b);
@@ -119,30 +119,30 @@ namespace LogicLayerTest
         [Test]
         public void BookPenaltyTest()
         {
-            var logic = new LibraryLogic();
+            LibraryLogic logic = new LibraryLogic(new Library());
 
             DateTime pastDate = new DateTime(2020, 10, 30);
             TimeSpan diff = DateTime.Today - pastDate;
 
-            var b = new Book("Dune", "Herbert", BType.SciFi, 1);
+            var b = new Book("Dune", "Herbert", BType.SciFi, 1, 1);
             b.ReturnDate = pastDate;
             Assert.AreEqual(logic.BookPenalty(b), diff.Days);
 
-            var b2 = new Book("Dune", "Herbert", BType.SciFi, 1);
+            var b2 = new Book("Dune", "Herbert", BType.SciFi, 1, 1);
             Assert.AreEqual(logic.BookPenalty(b2), 0);
         }
 
         [Test]
         public void TotalPenaltyTest()
         {
-            var logic = new LibraryLogic();
+            LibraryLogic logic = new LibraryLogic(new Library());
 
             DateTime pastDate = new DateTime(2020, 10, 30);
             TimeSpan diff = DateTime.Today - pastDate;
 
-            var c = new Customer("Paul", 10000);
-            var b1 = new Book("Dune", "Herbert", BType.SciFi, 1);
-            var b2 = new Book("Dune's Childer", "Herbert", BType.SciFi, 1);
+            AbstCustomer c = new Customer("Paul", 1, 10000);
+            AbstBook b1 = new Book("Dune", "Herbert", BType.SciFi, 1, 1);
+            AbstBook b2 = new Book("Dune's Childer", "Herbert", BType.SciFi, 1, 2);
 
             logic.AddCustomer(c);
             logic.AddToCatalog(b1);
@@ -159,9 +159,9 @@ namespace LogicLayerTest
 
             Assert.AreEqual(logic.TotalPenalty(logic.GetLibrary.Customers[0]), diff.Days * 2);
 
-            var c2 = new Customer("Chani", 10000);
-            var b3 = new Book("Dune", "Herbert", BType.SciFi, 1);
-            var b4 = new Book("Dune's Childer", "Herbert", BType.SciFi, 1);
+            AbstCustomer c2 = new Customer("Chani", 2, 10000);
+            AbstBook b3 = new Book("Dune", "Herbert", BType.SciFi, 1, 3);
+            AbstBook b4 = new Book("Dune's Childer", "Herbert", BType.SciFi, 1, 4);
 
             logic.AddCustomer(c2);
             logic.AddToCatalog(b3);
@@ -183,14 +183,14 @@ namespace LogicLayerTest
         [Test]
         public void PayTest()
         {
-            var logic = new LibraryLogic();
+            LibraryLogic logic = new LibraryLogic(new Library());
 
             DateTime pastDate = new DateTime(2020, 10, 30);
             TimeSpan diff = DateTime.Today - pastDate;
 
-            var c = new Customer("Paul", 10000);
-            var b1 = new Book("Dune", "Herbert", BType.SciFi, 1);
-            var b2 = new Book("Dune's Childer", "Herbert", BType.SciFi, 1);
+            AbstCustomer c = new Customer("Paul", 1, 10000);
+            AbstBook b1 = new Book("Dune", "Herbert", BType.SciFi, 1, 1);
+            AbstBook b2 = new Book("Dune's Childer", "Herbert", BType.SciFi, 1, 2);
 
             logic.AddCustomer(c);
             logic.AddToCatalog(b1);
@@ -213,7 +213,7 @@ namespace LogicLayerTest
             logic.Pay(logic.GetLibrary.Customers[0]);
             Assert.AreEqual(logic.GetLibrary.Customers[0].MoneyInCents, 10000 - diff.Days * 2);
 
-            var c2 = new Customer("Chani", 10000);
+            AbstCustomer c2 = new Customer("Chani", 2, 10000);
 
             logic.AddCustomer(c2);
             logic.AddToStock(b1);
@@ -234,13 +234,13 @@ namespace LogicLayerTest
         [Test]
         public void ReturnTest()
         {
-            var logic = new LibraryLogic();
+            LibraryLogic logic = new LibraryLogic(new Library());
 
             DateTime pastDate = new DateTime(2020, 10, 30);
             TimeSpan diff = DateTime.Today - pastDate;
 
-            var c = new Customer("Paul", 10000);
-            var b = new Book("Dune", "Herbert", BType.SciFi, 1);
+            AbstCustomer c = new Customer("Paul", 1, 10000);
+            AbstBook b = new Book("Dune", "Herbert", BType.SciFi, 1, 1);
 
             logic.AddCustomer(c);
             logic.AddToCatalog(b);
@@ -259,6 +259,50 @@ namespace LogicLayerTest
             Assert.AreEqual(logic.GetLibrary.Customers[0].MoneyInCents, 10000 - diff.Days);
             Assert.AreEqual(logic.GetLibrary.Stock.Count(), 1);
             Assert.AreEqual(logic.GetLibrary.Customers[0].Borrowed.Count(), 0);
+
+        }
+
+        [Test]
+        public void EventGanerationTest()
+        {
+            LibraryLogic logic = new LibraryLogic(new Library());
+
+            AbstCustomer c = new Customer("Paul", 1, 10000);
+            AbstBook b = new Book("Dune", "Herbert", BType.SciFi, 1, 2);
+
+            logic.AddCustomer(c);
+            Assert.AreEqual(logic.GetLibrary.Events[0].Name, "Added customer " + c.Id);
+
+            logic.AddToCatalog(b);
+            Assert.AreEqual(logic.GetLibrary.Events[1].Name, "Added to catalog book " + b.Id);
+
+            logic.AddToStock(b);
+            Assert.AreEqual(logic.GetLibrary.Events[2].Name, "Added to stock book " + b.Id);
+
+            logic.AddToBasket(logic.GetLibrary.Customers[0], logic.GetLibrary.Stock[0]);
+            Assert.AreEqual(logic.GetLibrary.Events[3].Name, "Removed from stock book " + b.Id);
+            Assert.AreEqual(logic.GetLibrary.Events[4].Name, "Added to basket of " + c.Id + " book " + b.Id);
+
+            logic.Borrow(logic.GetLibrary.Customers[0]);
+            Assert.AreEqual(logic.GetLibrary.Events[5].Name, "Borrowing books by " + c.Id);
+            Assert.AreEqual(logic.GetLibrary.Events[5].GetInvoice.Books[0], b);
+
+            Console.WriteLine("Customer c. borrowed:1 " + logic.GetLibrary.Customers[0].Borrowed.Count());
+            logic.Return(logic.GetLibrary.Customers[0]);
+            Console.WriteLine("Customer c. borrowed:2 " + logic.GetLibrary.Customers[0].Borrowed.Count());
+            
+            Assert.AreEqual(logic.GetLibrary.Events[6].Name, "Returning books by " + c.Id);
+            
+            Console.WriteLine(logic.GetLibrary.Events[6].GetInvoice.Books.Count());
+            Assert.AreEqual(logic.GetLibrary.Events[6].GetInvoice.Books.Count(), 1);
+
+            Assert.AreEqual(logic.GetLibrary.Events[7].Name, "Added to stock book " + b.Id);
+
+            logic.RemoveCustomer(logic.GetLibrary.Customers[0]);
+            Assert.AreEqual(logic.GetLibrary.Events[8].Name, "Removed customer " + c.Id);
+
+            logic.RemoveFromCatalog(logic.GetLibrary.Catalog[0]);
+            Assert.AreEqual(logic.GetLibrary.Events[9].Name, "Removed from catalog book " + b.Id);
 
         }
     }

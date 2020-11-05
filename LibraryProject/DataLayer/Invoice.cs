@@ -4,13 +4,7 @@ using System.Text;
 
 namespace DataLayer
 {
-    public class Invoice
+    public class Invoice : AbstInvoice
     {
-        private List<Book> books;
-        public List<Book> Books
-        {
-            get { return books; }
-            set { books = value; }
-        }
     }
 }

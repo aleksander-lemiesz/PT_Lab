@@ -4,47 +4,10 @@ using System.Text;
 
 namespace DataLayer
 {
-    public class Customer : IEquatable<Customer>
+    public class Customer : AbstCustomer
     {
-        private String name;
-        public String Name
+        public Customer(string n, int nid, int m) : base(n, nid, m)
         {
-            get { return name; }
-            set { name = value; }
-        }
-
-        private int moneyInCents;
-        public int MoneyInCents
-        {
-            get { return moneyInCents; }
-            set { moneyInCents = value; }
-        }
-
-        private List<Book> borrowed; 
-        public List<Book> Borrowed
-        {
-            get { return borrowed; }
-            set { borrowed = value; }
-        }
-
-        private List<Book> basket;
-        public List<Book> Basket
-        {
-            get { return basket; }
-            set { basket = value; }
-        }
-
-        public Customer(String n, int m)
-        {
-            name = n;
-            moneyInCents = m;
-            borrowed = new List<Book>();
-            basket = new List<Book>();
-        }
-
-        public bool Equals(Customer other)
-        {
-            return this.name == other.name;
         }
     }
 }

@@ -4,25 +4,10 @@ using System.Text;
 
 namespace DataLayer
 {
-    public class Event
+    public class Event : AbstEvent
     {
-        private String name;
-        public String Name
+        public Event(string n) : base(n)
         {
-            get { return name; }
-            set { name = value; }
-        }
-
-        private Invoice invoice;
-        public Invoice GetInvoice
-        {
-            get { return invoice; }
-            set { invoice = value; }
-        }
-
-        public Event(String n)
-        {
-            name = n;
         }
     }
 }

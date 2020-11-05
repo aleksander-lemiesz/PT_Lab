@@ -17,9 +17,9 @@ namespace ShopTest
         [Test]
         public void TestBook()
         {
-            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, 25);
-            Book book2 = new Book("Dune", "Frank Herbert", BType.SciFi, 25);
-            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", BType.Fantasy, 25);
+            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, 25, 1);
+            Book book2 = new Book("Dune", "Frank Herbert", BType.SciFi, 25, 1);
+            Book book3 = new Book("Dune", "Frank Herbert", BType.SciFi, 25, 2);
 
             Assert.AreEqual(book1.Title, "Dune");
             Assert.AreEqual(book1.Author, "Frank Herbert");
@@ -34,9 +34,9 @@ namespace ShopTest
         [Test]
         public void TestCustomer()
         {
-            Customer customer1 = new Customer("John", 1000);
-            Customer customer2 = new Customer("John", 2000);
-            Customer customer3 = new Customer("Paul", 3000);
+            Customer customer1 = new Customer("John", 1, 1000);
+            Customer customer2 = new Customer("John", 1, 2000);
+            Customer customer3 = new Customer("Paul", 2, 3000);
 
             Assert.AreEqual(customer1.Name, "John");
             Assert.AreEqual(customer1.MoneyInCents, 1000);
@@ -44,8 +44,8 @@ namespace ShopTest
             Assert.AreEqual(customer1, customer2);
             Assert.AreNotEqual(customer1, customer3);
 
-            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, 25);
-            Customer customer = new Customer("Paul", 10000);
+            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, 25, 1);
+            Customer customer = new Customer("Paul", 2, 10000);
 
             customer.Borrowed.Add(book1);
 
@@ -61,11 +61,11 @@ namespace ShopTest
         [Test]
         public void TestInvoice()
         {
-            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, 25);
-            Book book2 = new Book("Hunger Games", "Collins", BType.SciFi, 15);
-            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", BType.Fantasy, 5);
+            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, 25, 1);
+            Book book2 = new Book("Hunger Games", "Collins", BType.SciFi, 15, 1);
+            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", BType.Fantasy, 5, 1);
 
-            Customer customer = new Customer("Paul", 10000);
+            Customer customer = new Customer("Paul", 1, 10000);
 
             customer.Borrowed.Add(book1);
             customer.Borrowed.Add(book2);
@@ -80,11 +80,11 @@ namespace ShopTest
         [Test]
         public void TestEvent()
         {
-            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, 25);
-            Book book2 = new Book("Hunger Games", "Collins", BType.SciFi, 15);
-            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", BType.Fantasy, 5);
+            Book book1 = new Book("Dune", "Frank Herbert", BType.SciFi, 25, 1);
+            Book book2 = new Book("Hunger Games", "Collins", BType.SciFi, 15, 1);
+            Book book3 = new Book("The Last Wish", "Andrzej Sapkowski", BType.Fantasy, 5, 1);
 
-            Customer customer = new Customer("Paul", 10000);
+            Customer customer = new Customer("Paul", 1, 10000);
 
             customer.Borrowed.Add(book1);
             customer.Borrowed.Add(book2);
@@ -92,7 +92,7 @@ namespace ShopTest
 
             Invoice invoice = new Invoice();
             invoice.Books = customer.Borrowed;
-            Event event1 = new Event("Borrowing");
+            AbstEvent event1 = new Event("Borrowing");
             event1.GetInvoice = invoice;
 
             Assert.AreEqual(event1.Name, "Borrowing");
