@@ -43,11 +43,7 @@ namespace DataLayer
             customers = new List<AbstCustomer>();
         }
 
-        public void addEvent(String s)
-        {
-            AbstEvent anEvent = new Event(s);
-            anEvent.GetInvoice = new Invoice();
-            events.Add(anEvent);
-        }
+        public abstract void addEvent(String s);
+        
     }
 }
