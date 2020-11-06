@@ -112,19 +112,23 @@ namespace LogicLayer
 
         public void addEvent(String s, AbstCustomer c)
         {
-            AbstEvent anEvent = new Event(s + " by " + c.Id);
-            AbstInvoice anInvoice = new Invoice();
-            anEvent.GetInvoice = anInvoice;
-            anEvent.GetInvoice.Books = new List<AbstBook>(c.Borrowed);
-            library.Events.Add(anEvent);
+            library.addEvent(s + " by " + c.Id);
+            int size = library.Events.Count();
+            library.Events[size - 1].GetInvoice.Books = new List<AbstBook>(c.Borrowed);
+            //AbstEvent anEvent = new Event(s + " by " + c.Id);
+            //AbstInvoice anInvoice = new Invoice();
+            //anEvent.GetInvoice = anInvoice;
+            //anEvent.GetInvoice.Books = new List<AbstBook>(c.Borrowed);
+            //library.Events.Add(anEvent);
         }
 
         public void addEvent(String s)
         {
-            AbstEvent anEvent = new Event(s);
-            AbstInvoice anInvoice = new Invoice();
-            anEvent.GetInvoice = anInvoice;
-            library.Events.Add(anEvent);
+            library.addEvent(s);
+            //AbstEvent anEvent = new Event(s);
+            //AbstInvoice anInvoice = new Invoice();
+            //anEvent.GetInvoice = anInvoice;
+            //library.Events.Add(anEvent);
         }
 
         public bool Borrow(AbstCustomer c)
