@@ -50,6 +50,15 @@ namespace DataLayer
             basket = new List<AbstBook>();
         }
 
+        public AbstCustomer(String n, int m)
+        {
+            name = n;
+            moneyInCents = m;
+            id = new Random().Next();
+            borrowed = new List<AbstBook>();
+            basket = new List<AbstBook>();
+        }
+
         public bool Equals(AbstCustomer other)
         {
             return this.id == other.id;

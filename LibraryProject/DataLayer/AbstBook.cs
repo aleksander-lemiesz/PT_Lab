@@ -55,6 +55,16 @@ namespace DataLayer
             this.id = nid;
         }
 
+        public AbstBook(String t, String a, BType ty, int prd)
+        {
+            title = t;
+            author = a;
+            type = ty;
+            returnDate = DateTime.Today;
+            pricePerDayOverduedInCents = prd;
+            this.id = new Random().Next();
+        }
+
         public bool Equals(AbstBook other)
         {
             return this.id == other.id;

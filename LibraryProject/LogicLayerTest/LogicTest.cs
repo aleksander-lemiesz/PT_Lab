@@ -36,6 +36,28 @@ namespace LogicLayerTest
         }
 
         [Test]
+        public void RandomCustomerLogicTest()
+        {
+            LibraryLogic logic = new LibraryLogic(new Library());
+
+            AbstCustomer c = new RndIdCustomer("Paul", 10000);
+
+            logic.AddCustomer(c);
+
+            Assert.IsTrue(logic.GetLibrary.Customers.Contains(c));
+            Assert.IsTrue(logic.IsCustomer(c));
+
+            logic.AddCustomer(c);
+            Assert.AreEqual(logic.GetLibrary.Customers.Count(), 1);
+
+            logic.AddFunds(c, 10000);
+            Assert.AreEqual(logic.GetLibrary.Customers[0].MoneyInCents, 20000);
+
+            logic.RemoveCustomer(logic.GetLibrary.Customers[0]);
+            Assert.AreEqual(logic.GetLibrary.Customers.Count(), 0);
+        }
+
+        [Test]
         public void CatalogLogicTest()
         {
             LibraryLogic logic = new LibraryLogic(new Library());
