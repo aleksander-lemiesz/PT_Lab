@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database" Class="LibraryDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True" SettingsObjectName="LinqToSqlLib.Properties.Settings" SettingsPropertyName="DatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Books" Member="Books">
+    <Type Name="Books">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="author" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="penaltyCost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="returnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Books_BorrowedBooks" Member="BorrowedBooks" ThisKey="id" OtherKey="bookId" Type="BorrowedBooks" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customers">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="money" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Customers_BorrowedBooks" Member="BorrowedBooks" ThisKey="id" OtherKey="customerId" Type="BorrowedBooks" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BorrowedBooks" Member="BorrowedBooks">
+    <Type Name="BorrowedBooks">
+      <Column Name="bookId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="customerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="state" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="Books_BorrowedBooks" Member="Books" ThisKey="bookId" OtherKey="id" Type="Books" IsForeignKey="true" />
+      <Association Name="Customers_BorrowedBooks" Member="Customers" ThisKey="customerId" OtherKey="id" Type="Customers" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Catalog" Member="Catalog">
+    <Type Name="Catalog">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="author" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="penaltyCost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

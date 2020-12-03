@@ -56,6 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Library.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Library.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Persons.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,6 +95,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Library.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Library.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Library.dbml.layout">
+      <DependentUpon>Library.dbml</DependentUpon>
+    </None>
     <None Include="Persons.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Persons.designer.cs</LastGenOutput>
