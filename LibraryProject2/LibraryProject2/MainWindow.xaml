@@ -3,10 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:grid="http://schemas.microsoft.com/wpf/2008/toolkit"
         xmlns:local="clr-namespace:LibraryProject2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <d:DataGrid x:Name="MyDataGrid" x:Uid="MyDataGrid" AutoGenerateColumns="False"  
+                       AlternationCount="2" SelectionMode="Single" Margin="0,31,0,0">
+            <d:DataGrid.Columns>
+                <d:DataGridTextColumn Binding="{Binding  Path=CustomerID}" IsReadOnly="True" Header="Customer ID" Width="SizeToHeader" />
+                <d:DataGridTextColumn Binding="{Binding Path=CompanyName}" Header="Company" Width="SizeToHeader" />
+                <d:DataGridTextColumn Binding="{Binding Path=ContactName}" Header="Name" Width="SizeToHeader" />
+                <d:DataGridTextColumn Binding="{Binding Path=City}"  
+                                    Header="City" Width="SizeToHeader" />
+                <d:DataGridTextColumn Binding="{Binding Path=Country}" Header="Country" Width="SizeToHeader" />
+                <d:DataGridTextColumn Binding="{Binding Path=Phone}"  
+ Header="Phone" Width="SizeToHeader" />
+                <d:DataGridTemplateColumn Header="Edit Row">
+                    <d:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit" Click="EditButton_Click" />
+                        </DataTemplate>
+                    </d:DataGridTemplateColumn.CellTemplate>
+                </d:DataGridTemplateColumn>
+                <d:DataGridTemplateColumn Header="Delete Row">
+                    <d:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Click="DeleteButton_Click" />
+                        </DataTemplate>
+                    </d:DataGridTemplateColumn.CellTemplate>
+                </d:DataGridTemplateColumn>
+            </d:DataGrid.Columns>
+        </d:DataGrid>
+        <Button Height="23" Margin="12,2,0,0" Name="LoadButton" Content="Load Customers" VerticalAlignment="Top" Click="LoadButton_Click" HorizontalAlignment="Left" Width="126"></Button>
     </Grid>
 </Window>

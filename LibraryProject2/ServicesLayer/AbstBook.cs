@@ -1,73 +1,113 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Data.Linq.Mapping;
 
 namespace ServicesLayer
 {
+    [Table(Name = "Books")]
     public abstract class AbstBook : IEquatable<AbstBook>
     {
-        private String title;
-        public String Title
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string name)
         {
-            get { return title; }
-            set { title = value; }
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
 
-        private int id;
-        public int Id
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)] internal int Id { get; set; }
+
+        private string _title;
+        [Column]
+        public string Title
         {
-            get { return id; }
+            get { return _title; }
+            set
+            {
+                _title = value;
+                OnPropertyChanged("Title");
+            }
         }
 
-        private String author;
-        public String Author
+        private int _price;
+        [Column]
+        public int Price
         {
-            get { return author; }
-            set { author = value; }
+            get { return _price; }
+            set
+            {
+                _price = value;
+                OnPropertyChanged("Price");
+            }
         }
 
-        private BType type;
+        private string _author;
+        [Column]
+        public string Author
+        {
+            get { return _author; }
+            set
+            {
+                _author = value;
+                OnPropertyChanged("Author");
+            }
+        }
+
+        private BType _type;
         public BType Genre
         {
-            get { return type; }
-            set { type = value; }
+            get { return _type; }
+            set
+            {
+                _type = value;
+                OnPropertyChanged("Genre");
+            }
         }
 
-        private DateTime returnDate;
+        private DateTime _returnDate;
         public DateTime ReturnDate
         {
-            get { return returnDate; }
-            set { returnDate = value; }
+            get { return _returnDate; }
+            set { 
+                _returnDate = value;
+                OnPropertyChanged("ReturnDate");
+            }
         }
 
-        private int pricePerDayOverduedInCents;
-        public int PricePerDayOverduedInCents
+        private int _penaltyCost;
+        public int PenaltyCost
         {
-            get { return pricePerDayOverduedInCents; }
-            set { pricePerDayOverduedInCents = value; }
+            get { return _penaltyCost; }
+            set {
+                _penaltyCost = value;
+                OnPropertyChanged("PenaltyCost");
+            }
         }
 
         public AbstBook(String t, String a, BType ty, int prd, int nid)
         {
-            title = t;
-            author = a;
-            type = ty;
-            returnDate = DateTime.Today;
-            pricePerDayOverduedInCents = prd;
-            this.id = nid;
+            _title = t;
+            _author = a;
+            _type = ty;
+            _returnDate = DateTime.Today;
+            _penaltyCost = prd;
+            this.Id = nid;
         }
 
         public AbstBook(String t, String a, BType ty, int prd)
         {
-            title = t;
-            author = a;
-            type = ty;
-            returnDate = DateTime.Today;
-            pricePerDayOverduedInCents = prd;
-            this.id = new Random().Next();
+            _title = t;
+            _author = a;
+            _type = ty;
+            _returnDate = DateTime.Today;
+            _penaltyCost = prd;
+            this.Id = new Random().Next();
         }
 
         public bool Equals(AbstBook other)
         {
-            return this.id == other.id;
+            return this.Id == other.Id;
         }
 
     }

@@ -12,4 +12,9 @@
     <Folder Include="View\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LinqToSqlLib\LinqToSqlLib.csproj" />
+    <ProjectReference Include="..\ServicesLayer\ServicesLayer.csproj" />
+  </ItemGroup>
+
 </Project>

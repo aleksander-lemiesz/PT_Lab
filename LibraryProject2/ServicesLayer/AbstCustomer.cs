@@ -1,32 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.Linq.Mapping;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace ServicesLayer
 {
+    [Table(Name = "Customers")]
     public abstract class AbstCustomer : IEquatable<AbstCustomer>
     {
-        private String name;
-        public String Name
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string name)
         {
-            get { return name; }
-            set { name = value; }
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
 
-        private int id;
-        public int Id
-        {
-            get { return id; }
-        }
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)] internal int Id { get; set; }
 
-        private int moneyInCents;
-        public int MoneyInCents
+        private string _name;
+        [Column]
+        public string Name
         {
-            get { return moneyInCents; }
-            set { moneyInCents = value; }
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
         }
-
+        private int _money;
+        [Column]
+        public int Money
+        {
+            get { return _money; }
+            set
+            {
+                _money = value;
+                OnPropertyChanged("Money");
+            }
+        }
+       
         private List<AbstBook> borrowed; 
         public List<AbstBook> Borrowed
         {
@@ -43,25 +60,25 @@ namespace ServicesLayer
 
         public AbstCustomer(String n, int nid, int m)
         {
-            name = n;
-            moneyInCents = m;
-            id = nid;
+            _name = n;
+            _money = m;
+            Id = nid;
             borrowed = new List<AbstBook>();
             basket = new List<AbstBook>();
         }
 
         public AbstCustomer(String n, int m)
         {
-            name = n;
-            moneyInCents = m;
-            id = new Random().Next();
+            _name = n;
+            _money = m;
+            Id = new Random().Next();
             borrowed = new List<AbstBook>();
             basket = new List<AbstBook>();
         }
 
         public bool Equals(AbstCustomer other)
         {
-            return this.id == other.id;
+            return this.Id == other.Id;
         }
     }
 }
