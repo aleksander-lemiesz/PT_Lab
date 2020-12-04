@@ -55,6 +55,7 @@ namespace ServicesLayer
         }
 
         private BType _type;
+        [Column]
         public BType Genre
         {
             get { return _type; }
@@ -66,6 +67,7 @@ namespace ServicesLayer
         }
 
         private DateTime _returnDate;
+        [Column]
         public DateTime ReturnDate
         {
             get { return _returnDate; }
@@ -76,6 +78,7 @@ namespace ServicesLayer
         }
 
         private int _penaltyCost;
+        [Column]
         public int PenaltyCost
         {
             get { return _penaltyCost; }
