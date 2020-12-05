@@ -27,17 +27,5 @@ namespace LibraryProject2
         }
 
 
-      /*  private void LoadButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoadCustomers();
-        }
-        private void LoadCustomers()
-        {
-            LinqToSqlLib.LibraryDataContext cd = new LinqToSqlLib.LibraryDataContext();
-            var customers = (from p in cd.Customers
-                             select p).Take(1);
-            MyDataGrid.ItemsSource = customers;
-            LoadButton.Content = "Customers Loaded";
-        }*/
     }
 }
