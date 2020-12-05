@@ -28,8 +28,9 @@ namespace ServicesLayer
         static public bool updateTitle(int _id, string _title)
         {
             LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).First();
+            Books book = db.Books.Where(p => p.id == _id).FirstOrDefault();
             book.title = _title;
+
             db.SubmitChanges();
             return true;
         }
@@ -55,7 +56,7 @@ namespace ServicesLayer
         {
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             Books book = db.Books.Where(p => p.id == _id).First();
-            book.penaltyCost = _penaltyCost;
+            book.penaltyCost = 10;
             db.SubmitChanges();
             return true;
         }
@@ -80,9 +81,14 @@ namespace ServicesLayer
         static public Books getBook(int _id)
         {
             LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).First();
-            return book;
+            try
+            {
+                Books book = db.Books.Where(p => p.id == _id).First();
+                return book;
+            } catch (System.InvalidOperationException)
+            {
+                return null;
+            }
         }
-
     }
 }

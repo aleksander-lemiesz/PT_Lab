@@ -36,6 +36,9 @@ namespace DataLayerSQL
     partial void InsertBooks(Books instance);
     partial void UpdateBooks(Books instance);
     partial void DeleteBooks(Books instance);
+    partial void InsertBorrowedBooks(BorrowedBooks instance);
+    partial void UpdateBorrowedBooks(BorrowedBooks instance);
+    partial void DeleteBorrowedBooks(BorrowedBooks instance);
     #endregion
 		
 		public LibraryLinqDataContext() : 
@@ -76,19 +79,19 @@ namespace DataLayerSQL
 			}
 		}
 		
-		public System.Data.Linq.Table<BorrowedBooks> BorrowedBooks
-		{
-			get
-			{
-				return this.GetTable<BorrowedBooks>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Books> Books
 		{
 			get
 			{
 				return this.GetTable<Books>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BorrowedBooks> BorrowedBooks
+		{
+			get
+			{
+				return this.GetTable<BorrowedBooks>();
 			}
 		}
 	}
@@ -105,6 +108,8 @@ namespace DataLayerSQL
 		
 		private int _money;
 		
+		private EntitySet<BorrowedBooks> _BorrowedBooks;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -119,6 +124,7 @@ namespace DataLayerSQL
 		
 		public Customers()
 		{
+			this._BorrowedBooks = new EntitySet<BorrowedBooks>(new Action<BorrowedBooks>(this.attach_BorrowedBooks), new Action<BorrowedBooks>(this.detach_BorrowedBooks));
 			OnCreated();
 		}
 		
@@ -182,6 +188,19 @@ namespace DataLayerSQL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Customers_BorrowedBooks", Storage="_BorrowedBooks", ThisKey="id", OtherKey="customerId")]
+		public EntitySet<BorrowedBooks> BorrowedBooks
+		{
+			get
+			{
+				return this._BorrowedBooks;
+			}
+			set
+			{
+				this._BorrowedBooks.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -201,50 +220,17 @@ namespace DataLayerSQL
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BorrowedBooks")]
-	public partial class BorrowedBooks
-	{
 		
-		private int _bookId;
-		
-		private int _customerId;
-		
-		public BorrowedBooks()
+		private void attach_BorrowedBooks(BorrowedBooks entity)
 		{
+			this.SendPropertyChanging();
+			entity.Customers = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bookId", DbType="Int NOT NULL")]
-		public int bookId
+		private void detach_BorrowedBooks(BorrowedBooks entity)
 		{
-			get
-			{
-				return this._bookId;
-			}
-			set
-			{
-				if ((this._bookId != value))
-				{
-					this._bookId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_customerId", DbType="Int NOT NULL")]
-		public int customerId
-		{
-			get
-			{
-				return this._customerId;
-			}
-			set
-			{
-				if ((this._customerId != value))
-				{
-					this._customerId = value;
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Customers = null;
 		}
 	}
 	
@@ -268,6 +254,8 @@ namespace DataLayerSQL
 		
 		private System.Nullable<int> _state;
 		
+		private EntitySet<BorrowedBooks> _BorrowedBooks;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -290,6 +278,7 @@ namespace DataLayerSQL
 		
 		public Books()
 		{
+			this._BorrowedBooks = new EntitySet<BorrowedBooks>(new Action<BorrowedBooks>(this.attach_BorrowedBooks), new Action<BorrowedBooks>(this.detach_BorrowedBooks));
 			OnCreated();
 		}
 		
@@ -429,6 +418,223 @@ namespace DataLayerSQL
 					this._state = value;
 					this.SendPropertyChanged("state");
 					this.OnstateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Books_BorrowedBooks", Storage="_BorrowedBooks", ThisKey="id", OtherKey="bookId")]
+		public EntitySet<BorrowedBooks> BorrowedBooks
+		{
+			get
+			{
+				return this._BorrowedBooks;
+			}
+			set
+			{
+				this._BorrowedBooks.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_BorrowedBooks(BorrowedBooks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Books = this;
+		}
+		
+		private void detach_BorrowedBooks(BorrowedBooks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Books = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BorrowedBooks")]
+	public partial class BorrowedBooks : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _bookId;
+		
+		private int _customerId;
+		
+		private EntityRef<Books> _Books;
+		
+		private EntityRef<Customers> _Customers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnbookIdChanging(int value);
+    partial void OnbookIdChanged();
+    partial void OncustomerIdChanging(int value);
+    partial void OncustomerIdChanged();
+    #endregion
+		
+		public BorrowedBooks()
+		{
+			this._Books = default(EntityRef<Books>);
+			this._Customers = default(EntityRef<Customers>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bookId", DbType="Int NOT NULL")]
+		public int bookId
+		{
+			get
+			{
+				return this._bookId;
+			}
+			set
+			{
+				if ((this._bookId != value))
+				{
+					if (this._Books.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnbookIdChanging(value);
+					this.SendPropertyChanging();
+					this._bookId = value;
+					this.SendPropertyChanged("bookId");
+					this.OnbookIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_customerId", DbType="Int NOT NULL")]
+		public int customerId
+		{
+			get
+			{
+				return this._customerId;
+			}
+			set
+			{
+				if ((this._customerId != value))
+				{
+					if (this._Customers.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncustomerIdChanging(value);
+					this.SendPropertyChanging();
+					this._customerId = value;
+					this.SendPropertyChanged("customerId");
+					this.OncustomerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Books_BorrowedBooks", Storage="_Books", ThisKey="bookId", OtherKey="id", IsForeignKey=true)]
+		public Books Books
+		{
+			get
+			{
+				return this._Books.Entity;
+			}
+			set
+			{
+				Books previousValue = this._Books.Entity;
+				if (((previousValue != value) 
+							|| (this._Books.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Books.Entity = null;
+						previousValue.BorrowedBooks.Remove(this);
+					}
+					this._Books.Entity = value;
+					if ((value != null))
+					{
+						value.BorrowedBooks.Add(this);
+						this._bookId = value.id;
+					}
+					else
+					{
+						this._bookId = default(int);
+					}
+					this.SendPropertyChanged("Books");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Customers_BorrowedBooks", Storage="_Customers", ThisKey="customerId", OtherKey="id", IsForeignKey=true)]
+		public Customers Customers
+		{
+			get
+			{
+				return this._Customers.Entity;
+			}
+			set
+			{
+				Customers previousValue = this._Customers.Entity;
+				if (((previousValue != value) 
+							|| (this._Customers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Customers.Entity = null;
+						previousValue.BorrowedBooks.Remove(this);
+					}
+					this._Customers.Entity = value;
+					if ((value != null))
+					{
+						value.BorrowedBooks.Add(this);
+						this._customerId = value.id;
+					}
+					else
+					{
+						this._customerId = default(int);
+					}
+					this.SendPropertyChanged("Customers");
 				}
 			}
 		}

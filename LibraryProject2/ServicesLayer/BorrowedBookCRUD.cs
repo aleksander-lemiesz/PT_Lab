@@ -6,17 +6,18 @@ using DataLayerSQL;
 
 namespace ServicesLayer
 {
-    class BorrowedBookCRUD
+    public static class BorrowedBookCRUD
     {
-        public bool borrowBook(Customers customer, Books book)
+        public static bool borrowBook(int _id, Customers customer, Books book)
         {
-            if ((book.state == 0) || (customer.money <= 0)) return false;
+            if ((BookCRUD.getBook(book.id) == null) || (book.state == 0) || (customer.money <= 0)) return false;
 
             BookCRUD.updateState(book.id, 0); // 1-book in stock, 0-book not in stock
             BookCRUD.updateReturnDate(book.id, DateTime.Today.AddDays(14));
-
+            
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             BorrowedBooks borrowed = new BorrowedBooks();
+            borrowed.id = _id;
             borrowed.bookId = book.id;
             borrowed.customerId = customer.id;
             db.BorrowedBooks.InsertOnSubmit(borrowed);
@@ -24,7 +25,7 @@ namespace ServicesLayer
             return true;
         }
 
-        public bool returnBook(int _bookId)
+        public static bool returnBook(int _bookId)
         {
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             BorrowedBooks borrowed = db.BorrowedBooks.Where(p => p.bookId == _bookId).First();
@@ -40,7 +41,7 @@ namespace ServicesLayer
             return true;
         }
        
-        public BorrowedBooks getBorrowedBooks(int _bookId)
+        public static BorrowedBooks getBorrowedBooks(int _bookId)
         {
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             BorrowedBooks borrowed = db.BorrowedBooks.Where(p => p.bookId == _bookId).First();
