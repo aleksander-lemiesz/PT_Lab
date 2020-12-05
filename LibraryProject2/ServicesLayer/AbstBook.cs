@@ -54,9 +54,9 @@ namespace ServicesLayer
             }
         }
 
-        private BType _type;
+        private string _type;
         [Column]
-        public BType Genre
+        public string Genre
         {
             get { return _type; }
             set
@@ -88,7 +88,7 @@ namespace ServicesLayer
             }
         }
 
-        public AbstBook(String t, String a, BType ty, int prd, int nid)
+        public AbstBook(String t, String a, string ty, int prd, int nid)
         {
             _title = t;
             _author = a;
@@ -97,6 +97,9 @@ namespace ServicesLayer
             _penaltyCost = prd;
             this.Id = nid;
         }
+
+        public AbstBook()
+        { }
 
         public AbstBook(String t, String a, BType ty, int prd)
         {
