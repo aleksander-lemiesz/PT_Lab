@@ -27,7 +27,7 @@ namespace LibraryProject2
         }
 
 
-        private void LoadButton_Click(object sender, RoutedEventArgs e)
+      /*  private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             LoadCustomers();
         }
@@ -38,6 +38,6 @@ namespace LibraryProject2
                              select p).Take(1);
             MyDataGrid.ItemsSource = customers;
             LoadButton.Content = "Customers Loaded";
-        }
+        }*/
     }
 }

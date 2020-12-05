@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LinqToSqlLib\LinqToSqlLib.csproj" />
+    <ProjectReference Include="..\DataLayerSQL\DataLayerSQL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
