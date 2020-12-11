@@ -8,9 +8,11 @@ namespace ServicesLayer
 {
     public static class BorrowedBookCRUD
     {
-        public static bool borrowBook(int _id, Customers customer, Books book)
+        public static bool borrowBook(int _id, int _customerId, int _bookId)
         {
-            if ((BookCRUD.getBook(book.id) == null) || (book.state == 0) || (customer.money <= 0)) return false;
+            Customers customer = CustomerCRUD.getCustomer(_customerId);
+            Books book = BookCRUD.getBook(_bookId);
+            if ((book == null) || (book.state == 0) || (customer.money <= 0)) return false;
 
             BookCRUD.updateState(book.id, 0); // 1-book in stock, 0-book not in stock
             BookCRUD.updateReturnDate(book.id, DateTime.Today.AddDays(14));
@@ -46,6 +48,18 @@ namespace ServicesLayer
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             BorrowedBooks borrowed = db.BorrowedBooks.Where(p => p.bookId == _bookId).First();
             return borrowed;
+        }
+        public static int getBookId(int _id)
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            BorrowedBooks borrowed = db.BorrowedBooks.Where(p => p.id == _id).First();
+            return borrowed.bookId;
+        }
+        public static int getCustomerId(int _id)
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            BorrowedBooks borrowed = db.BorrowedBooks.Where(p => p.id == _id).First();
+            return borrowed.customerId;
         }
     }
 }

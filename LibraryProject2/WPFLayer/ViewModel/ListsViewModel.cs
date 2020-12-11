@@ -14,6 +14,7 @@ namespace WPFLayer.ViewModel
         {
             customer = new Customer(100);
             book = new Book(100);
+            borrowed = new BorrowedBook(100);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

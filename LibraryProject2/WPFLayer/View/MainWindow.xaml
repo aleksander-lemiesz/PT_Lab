@@ -18,6 +18,9 @@
                         Height="29"
                         Margin="273,0,297,0"
                         Content="Check out a book" />
+                    <TextBlock Text="{Binding BorrowedBookRecord}" />
+                    <TextBox Text="{Binding BCustomerId, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding BBookId, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="Customers">
