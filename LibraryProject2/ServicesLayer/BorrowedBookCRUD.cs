@@ -61,5 +61,10 @@ namespace ServicesLayer
             BorrowedBooks borrowed = db.BorrowedBooks.Where(p => p.id == _id).First();
             return borrowed.customerId;
         }
+        static public int countBorrowedBooks()
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            return db.BorrowedBooks.Count();
+        }
     }
 }

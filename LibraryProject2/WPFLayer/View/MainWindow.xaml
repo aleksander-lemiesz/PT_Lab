@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:WPFLayer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    Width="900"
+    Height="500"
     mc:Ignorable="d">
     <StackPanel>
         <TabControl>
@@ -18,9 +18,35 @@
                         Height="29"
                         Margin="273,0,297,0"
                         Content="Check out a book" />
-                    <TextBlock Text="{Binding BorrowedBookRecord}" />
-                    <TextBox Text="{Binding BCustomerId, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Text="{Binding BBookId, UpdateSourceTrigger=PropertyChanged}" />
+                    <ListView
+                        Name="bbooks"
+                        Width="650"
+                        Height="400"
+                        Margin="8"
+                        ItemsSource="{Binding}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="Auto" Header="ID">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Width="40"
+                                                Text="{Binding BorrowedBookId}"
+                                                TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=BCustomerId}"
+                                    Header="Customer" />
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=BBookId}"
+                                    Header="Book" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Customers">
@@ -30,10 +56,36 @@
                         Height="29"
                         Margin="273,0,297,0"
                         Content="Add new customer" />
-                    <TextBlock Text="{Binding CustomerRecord}" />
-                    <TextBox Text="{Binding CustomerId, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Text="{Binding Money, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <ListView
+                        Name="custs"
+                        Width="650"
+                        Height="400"
+                        Margin="8"
+                        ItemsSource="{Binding}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="Auto" Header="ID">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Width="40"
+                                                Text="{Binding CustomerId}"
+                                                TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Name}"
+                                    Header="Name" />
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Money}"
+                                    Header="Money" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Books">
@@ -43,12 +95,51 @@
                         Height="29"
                         Margin="273,0,297,0"
                         Content="Add new book" />
-                    <TextBlock Text="{Binding BookRecord}" />
-                    <TextBox Text="{Binding BookId, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Text="{Binding ReturnDate, UpdateSourceTrigger=PropertyChanged}" />
+                    <ListView
+                        Name="vbooks"
+                        Width="650"
+                        Height="400"
+                        Margin="8"
+                        ItemsSource="{Binding}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="Auto" Header="ID">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Width="40"
+                                                Text="{Binding BookId}"
+                                                TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Title}"
+                                    Header="Title" />
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Author}"
+                                    Header="Author" />
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Type}"
+                                    Header="Type" />
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=PenaltyCost}"
+                                    Header="PenaltyCost" />
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=ReturnDate}"
+                                    Header="ReturnDate" />
+                                <GridViewColumn
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=State}"
+                                    Header="State" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </StackPanel>
             </TabItem>
         </TabControl>

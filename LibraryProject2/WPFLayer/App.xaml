@@ -4,5 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:WPFLayer"
     StartupUri="View/MainWindow.xaml">
-    <Application.Resources />
+    <Application.Resources>
+        <DataTemplate x:Key="CustomersList" />
+    </Application.Resources>
 </Application>

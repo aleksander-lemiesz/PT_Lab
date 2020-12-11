@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFLayer.Model;
 using WPFLayer.ViewModel;
 
 namespace WPFLayer
@@ -22,11 +23,14 @@ namespace WPFLayer
 
     public partial class MainWindow : Window
     {
-        private readonly ListsViewModel _viewModel;
+        private readonly ListsViewModel _viewModel = new ListsViewModel();
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new ListsViewModel();
+
+            custs.ItemsSource = _viewModel.GetCustomers();
+            vbooks.ItemsSource = _viewModel.GetBooks();
+            bbooks.ItemsSource = _viewModel.GetBorrowedBooks();
             DataContext = _viewModel;
 
         }

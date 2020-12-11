@@ -178,5 +178,11 @@ namespace ServicesLayer
                 return -1;
             }
         }
+        static public int countBooks()
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            return db.Books.Count();
+        }
+
     }
 }

@@ -11,7 +11,7 @@ namespace WPFLayer.ViewModel
     public partial class ListsViewModel : INotifyPropertyChanged
     {
         private Customer customer;
-
+        private List<Customer> customers;
         public int CustomerId
         {
             get { return customer.CustomerId; }

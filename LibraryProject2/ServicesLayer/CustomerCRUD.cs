@@ -64,6 +64,10 @@ namespace ServicesLayer
             Customers customer = db.Customers.Where(p => p.id == _id).First();
             return customer.money;
         }
-       
+        static public int countCustomers()
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            return db.Customers.Count();
+        }
     }
 }

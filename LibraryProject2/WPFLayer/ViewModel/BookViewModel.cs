@@ -10,6 +10,7 @@ namespace WPFLayer.ViewModel
     public partial class ListsViewModel : INotifyPropertyChanged
     {
         private Book book;
+        private List<Book> books;
 
         public int BookId
         {

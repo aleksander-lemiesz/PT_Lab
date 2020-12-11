@@ -10,8 +10,8 @@ namespace WPFLayer.ViewModel
 {
     public partial class ListsViewModel : INotifyPropertyChanged
     {
-        BorrowedBook borrowed;
-
+        private BorrowedBook borrowed;
+        private List<BorrowedBook> borroweds;
         public int BorrowedBookId
         {
             get { return borrowed.BorrowedBookId; }
