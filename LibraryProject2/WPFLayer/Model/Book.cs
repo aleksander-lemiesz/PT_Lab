@@ -12,7 +12,7 @@ namespace WPFLayer.Model
 
         public Book(int _id)
         {
-            Id = _id;
+            BookId = _id;
             Title = BookCRUD.getTitle(_id);
             Author = BookCRUD.getAuthor(_id);
             Type = BookCRUD.getType(_id);
@@ -22,7 +22,7 @@ namespace WPFLayer.Model
 
         }
      
-        public int Id { get; set; }
+        public int BookId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Type { get; set; }

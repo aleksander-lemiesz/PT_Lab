@@ -22,11 +22,11 @@ namespace WPFLayer
 
     public partial class MainWindow : Window
     {
-        private readonly BookViewModel _viewModel;
+        private readonly ListsViewModel _viewModel;
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new BookViewModel();
+            _viewModel = new ListsViewModel();
             DataContext = _viewModel;
 
         }

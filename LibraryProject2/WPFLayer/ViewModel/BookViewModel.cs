@@ -7,19 +7,19 @@ using ServicesLayer;
 
 namespace WPFLayer.ViewModel
 {
-    public sealed class BookViewModel : INotifyPropertyChanged
+    public partial class ListsViewModel : INotifyPropertyChanged
     {
         private Book book;
 
-        public int Id
+        public int BookId
         {
-            get { return book.Id; }
+            get { return book.BookId; }
             set
             {
-                if (book.Id != value)
+                if (book.BookId != value)
                 {
-                    book.Id = value;
-                    OnPropertyChange("Id");
+                    book.BookId = value;
+                    OnPropertyChange("BookId");
                     OnPropertyChange("BookRecord");
                 }
             }
@@ -110,22 +110,9 @@ namespace WPFLayer.ViewModel
 
         public string BookRecord
         {
-            get { return Id + " " + Title + " " + Author + " " + Type + " " + PenaltyCost + " " + ReturnDate + " " + State; }
+            get { return BookId + " " + Title + " " + Author + " " + Type + " " + PenaltyCost + " " + ReturnDate + " " + State; }
         }
 
-        public BookViewModel()
-        {
-            book = new Book(100);
-        }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChange(string v)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(v));
-            }
-        }
     }
 }

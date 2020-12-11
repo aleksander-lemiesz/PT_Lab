@@ -8,8 +8,12 @@ namespace ServicesLayer
 {
     public static class CustomerCRUD
     {
-        static public bool addCustomer(Customers customer)
+        static public bool addCustomer(int _id, string _name, int _money)
         {
+            Customers customer = new Customers();
+            customer.id = _id;
+            customer.name = _name;
+            customer.money = _money;
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             db.Customers.InsertOnSubmit(customer);
             db.SubmitChanges();
@@ -48,5 +52,18 @@ namespace ServicesLayer
             Customers customer = db.Customers.Where(p => p.id == _id).First();
             return customer;
         }
+        static public string getName(int _id)
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            Customers customer = db.Customers.Where(p => p.id == _id).First();
+            return customer.name;
+        }
+        static public int getMoney(int _id)
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            Customers customer = db.Customers.Where(p => p.id == _id).First();
+            return customer.money;
+        }
+       
     }
 }
