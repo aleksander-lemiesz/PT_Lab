@@ -34,5 +34,10 @@ namespace WPFLayer
             DataContext = _viewModel;
 
         }
+        private void TextBlock_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //var teamName = (e.Source as TextBlock).Text;
+            MessageBox.Show("Hello World");
+        }
     }
 }

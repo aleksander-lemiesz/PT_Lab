@@ -97,31 +97,44 @@
                         Content="Add new book" />
                     <ListView
                         Name="vbooks"
-                        Width="650"
-                        Height="400"
                         Margin="8"
                         ItemsSource="{Binding}">
                         <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="Auto" Header="ID">
+
+                            <GridView x:Name="G1">
+
+                                <GridViewColumn Header="ID">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Width="40"
+                                                MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"
                                                 Text="{Binding BookId}"
                                                 TextAlignment="Right" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Path=Title}"
-                                    Header="Title" />
-                                <GridViewColumn
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Path=Author}"
-                                    Header="Author" />
-                                <GridViewColumn
+                                <GridViewColumn Header="Title">
+
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"
+                                                Text="{Binding Title}"
+                                                TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Author">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"
+                                                Text="{Binding Author}"
+                                                TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <!-- <GridViewColumn
                                     Width="100"
                                     DisplayMemberBinding="{Binding Path=Type}"
                                     Header="Type" />
@@ -136,7 +149,7 @@
                                 <GridViewColumn
                                     Width="100"
                                     DisplayMemberBinding="{Binding Path=State}"
-                                    Header="State" />
+                                    Header="State" />-->
                             </GridView>
                         </ListView.View>
                     </ListView>
