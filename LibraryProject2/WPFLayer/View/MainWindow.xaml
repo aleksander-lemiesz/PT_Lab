@@ -1,0 +1,50 @@
+﻿<Window
+    x:Class="WPFLayer.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFLayer"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <StackPanel>
+        <TabControl>
+            <TabItem Header="Borrow List">
+                <StackPanel>
+                    <Button
+                        x:Name="borrowBtn"
+                        Height="29"
+                        Margin="273,0,297,0"
+                        Content="Check out a book" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Customers">
+                <StackPanel>
+                    <Button
+                        x:Name="addCustomerBtn"
+                        Height="29"
+                        Margin="273,0,297,0"
+                        Content="Add new customer" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Books">
+                <StackPanel>
+                    <Button
+                        x:Name="addBookBtn"
+                        Height="29"
+                        Margin="273,0,297,0"
+                        Content="Add new book" />
+                    <TextBlock Text="{Binding BookRecord}" />
+                    <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding ReturnDate, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+    </StackPanel>
+</Window>

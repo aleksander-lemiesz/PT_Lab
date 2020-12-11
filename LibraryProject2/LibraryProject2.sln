@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "LibraryProject2\PresentationLayer.csproj", "{5A280722-FD3D-4F8E-8B82-0A5E554BCA26}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesLayer", "ServicesLayer\ServicesLayer.csproj", "{34FF01FF-6E3D-43B2-B392-9C986756F62A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBTests", "TestTest\DBTests.csproj", "{472AD191-9CF0-4299-868E-9BBC2D191116}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayerSQL", "DataLayerSQ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesTests", "ServicesTests\ServicesTests.csproj", "{DEBDAF6B-B22A-4AC2-BCE7-4B1D5E8824F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFLayer", "WPFLayer\WPFLayer.csproj", "{DE559CA3-3B33-40A3-9548-2C3565BDC560}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5A280722-FD3D-4F8E-8B82-0A5E554BCA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A280722-FD3D-4F8E-8B82-0A5E554BCA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A280722-FD3D-4F8E-8B82-0A5E554BCA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A280722-FD3D-4F8E-8B82-0A5E554BCA26}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34FF01FF-6E3D-43B2-B392-9C986756F62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{34FF01FF-6E3D-43B2-B392-9C986756F62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34FF01FF-6E3D-43B2-B392-9C986756F62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{DEBDAF6B-B22A-4AC2-BCE7-4B1D5E8824F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEBDAF6B-B22A-4AC2-BCE7-4B1D5E8824F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEBDAF6B-B22A-4AC2-BCE7-4B1D5E8824F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE559CA3-3B33-40A3-9548-2C3565BDC560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE559CA3-3B33-40A3-9548-2C3565BDC560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE559CA3-3B33-40A3-9548-2C3565BDC560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE559CA3-3B33-40A3-9548-2C3565BDC560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

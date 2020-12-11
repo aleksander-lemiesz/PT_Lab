@@ -39,6 +39,12 @@
                         Height="29"
                         Margin="273,0,297,0"
                         Content="Add new book" />
+                    <TextBlock Text="{Binding BookRecord}" />
+                    <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+                    <!-- <TextBox Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding ReturnDate, UpdateSourceTrigger=PropertyChanged}" />-->
                 </StackPanel>
             </TabItem>
         </TabControl>

@@ -13,7 +13,7 @@ namespace ServicesTests
         public void BorrowExistingBookToCustomerWithMoney()
         {
             Books book = new Books() { id = 201, author = "Jane Austin", title = "Awesome book", type = "Classic", penaltyCost = 20, state = 1 };
-            Assert.IsTrue(BookCRUD.addBook(book));
+            Assert.IsTrue(BookCRUD.addBook(book.id, book.title, book.author, book.type, book.penaltyCost, DateTime.Today, (int)book.state));
             Customers c = new Customers() { id = 201, name = "Paul", money = 100 };
             Assert.IsTrue(CustomerCRUD.addCustomer(c));
             Assert.IsTrue(BorrowedBookCRUD.borrowBook(101, c, book));
@@ -25,7 +25,7 @@ namespace ServicesTests
         public void BorrowExistingBookToCustomerWithoutMoney()
         {
             Books book = new Books() { id = 202, author = "Jane Austin", title = "Awesome book", type = "Classic", penaltyCost = 20, state = 1 };
-            Assert.IsTrue(BookCRUD.addBook(book));
+            Assert.IsTrue(BookCRUD.addBook(book.id, book.title, book.author, book.type, book.penaltyCost, DateTime.Today, (int)book.state));
             Customers c = new Customers() { id = 202, name = "Paul", money = 0 };
             Assert.IsTrue(CustomerCRUD.addCustomer(c));
             Assert.IsFalse(BorrowedBookCRUD.borrowBook(102, c, book));
@@ -44,7 +44,7 @@ namespace ServicesTests
         public void BorrowBorrowedBookToCustomerWithMoney()
         {
             Books book = new Books() { id = 204, author = "Jane Austin", title = "Awesome book", type = "Classic", penaltyCost = 20, state = 0 };
-            Assert.IsTrue(BookCRUD.addBook(book));
+            Assert.IsTrue(BookCRUD.addBook(book.id, book.title, book.author, book.type, book.penaltyCost, DateTime.Today, (int)book.state));
             Customers c = new Customers() { id = 204, name = "Paul", money = 100 };
             Assert.IsTrue(CustomerCRUD.addCustomer(c));
             Assert.IsFalse(BorrowedBookCRUD.borrowBook(104, c, book));
