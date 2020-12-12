@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using WPFLayer.Model;
+using WPFLayer.View;
 
 namespace WPFLayer.ViewModel
 {

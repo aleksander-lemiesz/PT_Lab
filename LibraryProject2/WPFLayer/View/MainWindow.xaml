@@ -9,6 +9,17 @@
     Width="900"
     Height="500"
     mc:Ignorable="d">
+    <Window.Resources>
+        <DataTemplate x:Key="RowButtons">
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding ViewCommand}" Content="View" />
+                <Button Content="Edit" />
+                <Button Content="Delete" />
+            </StackPanel>
+
+        </DataTemplate>
+
+    </Window.Resources>
     <StackPanel>
         <TabControl>
             <TabItem Header="Borrow List">
@@ -44,6 +55,7 @@
                                     Width="100"
                                     DisplayMemberBinding="{Binding Path=BBookId}"
                                     Header="Book" />
+                                <GridViewColumn CellTemplate="{StaticResource RowButtons}" />
                             </GridView>
                         </ListView.View>
                     </ListView>

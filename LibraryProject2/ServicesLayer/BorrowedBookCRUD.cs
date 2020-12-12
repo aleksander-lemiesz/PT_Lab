@@ -66,5 +66,6 @@ namespace ServicesLayer
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             return db.BorrowedBooks.Count();
         }
+        
     }
 }
