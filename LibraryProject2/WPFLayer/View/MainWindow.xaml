@@ -20,18 +20,41 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate x:Key="CustomerRowButtons">
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding CustomerViewCommand}" Content="View" />
+                <Button Command="{Binding CustomerEditCommand}" Content="Edit" />
+                <Button Command="{Binding CustomerDeleteCommand}" Content="Delete" />
+            </StackPanel>
+        </DataTemplate>
 
+        <DataTemplate x:Key="BookRowButtons">
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding BookViewCommand}" Content="View" />
+                <Button Command="{Binding BookEditCommand}" Content="Edit" />
+                <Button Command="{Binding BookDeleteCommand}" Content="Delete" />
+            </StackPanel>
+        </DataTemplate>
 
 
     </Window.Resources>
     <StackPanel>
         <TabControl>
             <TabItem Header="Borrow List">
-
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Button Command="{Binding BorrowBookCommand}" Content="Check out a book" />
-                        <Button Click="Button_Click" Content="Refresh" />
+                        <Button
+                            x:Name="borrowBtn"
+                            Width="450"
+                            Height="29"
+                            Command="{Binding BorrowBookCommand}"
+                            Content="Check out a book" />
+                        <Button
+                            x:Name="refreshBtn"
+                            Width="450"
+                            Height="29"
+                            Click="Button_Click"
+                            Content="Refresh" />
                     </StackPanel>
 
                     <ListView
@@ -68,11 +91,20 @@
             </TabItem>
             <TabItem Header="Customers">
                 <StackPanel>
-                    <Button
-                        x:Name="addCustomerBtn"
-                        Height="29"
-                        Margin="273,0,297,0"
-                        Content="Add new customer" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            x:Name="addCustomerBtn"
+                            Width="450"
+                            Height="29"
+                            Command="{Binding CustomerAddCommand}"
+                            Content="Add Customer" />
+                        <Button
+                            x:Name="refreshBtn2"
+                            Width="450"
+                            Height="29"
+                            Click="Button_Click"
+                            Content="Refresh" />
+                    </StackPanel>
 
                     <ListView
                         Name="custs"
@@ -96,10 +128,7 @@
                                     Width="100"
                                     DisplayMemberBinding="{Binding Path=Name}"
                                     Header="Name" />
-                                <GridViewColumn
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Path=Money}"
-                                    Header="Money" />
+                                <GridViewColumn CellTemplate="{StaticResource CustomerRowButtons}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -107,11 +136,21 @@
             </TabItem>
             <TabItem Header="Books">
                 <StackPanel>
-                    <Button
-                        x:Name="addBookBtn"
-                        Height="29"
-                        Margin="273,0,297,0"
-                        Content="Add new book" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            x:Name="addBookBtn"
+                            Width="450"
+                            Height="29"
+                            Command="{Binding BookAddCommand}"
+                            Content="Add Book" />
+                        <Button
+                            x:Name="refreshBtn3"
+                            Width="450"
+                            Height="29"
+                            Click="Button_Click"
+                            Content="Refresh" />
+                    </StackPanel>
+
                     <ListView
                         Name="vbooks"
                         Margin="8"
@@ -142,24 +181,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-
-                                <GridViewColumn
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Path=Type}"
-                                    Header="Type" />
-                                <GridViewColumn
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Path=PenaltyCost}"
-                                    Header="PenaltyCost" />
-                                <GridViewColumn
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Path=ReturnDate}"
-                                    Header="ReturnDate" />
-                                <GridViewColumn
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Path=State}"
-                                    Header="State" />
-
+                                <GridViewColumn CellTemplate="{StaticResource BookRowButtons}" />
                             </GridView>
                         </ListView.View>
                     </ListView>

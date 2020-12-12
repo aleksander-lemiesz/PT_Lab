@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServicesLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -21,7 +22,6 @@ namespace WPFLayer.ViewModel
                 {
                     customer.CustomerId = value;
                     OnPropertyChange("CustomerId");
-                    OnPropertyChange("CustomerRecord");
                 }
             }
         }
@@ -33,8 +33,8 @@ namespace WPFLayer.ViewModel
                 if (customer.Name != value)
                 {
                     customer.Name = value;
+                    CustomerCRUD.updateName(customer.CustomerId, value);
                     OnPropertyChange("Name");
-                    OnPropertyChange("CustomerRecord");
                 }
             }
         }
@@ -46,16 +46,10 @@ namespace WPFLayer.ViewModel
                 if (customer.Money != value)
                 {
                     customer.Money = value;
+                    CustomerCRUD.updateMoney(customer.CustomerId, value);
                     OnPropertyChange("Money");
-                    OnPropertyChange("CustomerRecord");
                 }
             }
         }
-        public string CustomerRecord
-        {
-            get { return CustomerId + " " + Name + " " + Money; }
-        }
-
-       
     }
 }

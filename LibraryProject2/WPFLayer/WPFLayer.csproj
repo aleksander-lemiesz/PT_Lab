@@ -61,11 +61,35 @@
     <Compile Include="Model\BorrowedBook.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
+    <Page Include="View\BookAddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BookDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BookEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BorrowBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BorrowedBooksDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomerAddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomerDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomerEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,11 +111,29 @@
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\EditReturnDateViewModel.cs" />
     <Compile Include="ViewModel\ListsViewModel.cs" />
+    <Compile Include="View\BookAddWindow.xaml.cs">
+      <DependentUpon>BookAddWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BookDetailsWindow.xaml.cs">
+      <DependentUpon>BookDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BookEditWindow.xaml.cs">
+      <DependentUpon>BookEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BorrowBookWindow.xaml.cs">
       <DependentUpon>BorrowBookWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BorrowedBooksDetails.xaml.cs">
       <DependentUpon>BorrowedBooksDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerAddWindow.xaml.cs">
+      <DependentUpon>CustomerAddWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerDetailsWindow.xaml.cs">
+      <DependentUpon>CustomerDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerEditWindow.xaml.cs">
+      <DependentUpon>CustomerEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditReturnDateWindow.xaml.cs">
       <DependentUpon>EditReturnDateWindow.xaml</DependentUpon>

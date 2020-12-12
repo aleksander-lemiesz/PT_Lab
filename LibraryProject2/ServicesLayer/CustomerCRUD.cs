@@ -52,22 +52,44 @@ namespace ServicesLayer
             Customers customer = db.Customers.Where(p => p.id == _id).First();
             return customer;
         }
+
         static public string getName(int _id)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Customers customer = db.Customers.Where(p => p.id == _id).First();
-            return customer.name;
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Customers customer = db.Customers.Where(p => p.id == _id).First();
+                return customer.name;
+            }
+            catch (System.InvalidOperationException)
+            {
+                return null;
+            }
         }
         static public int getMoney(int _id)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Customers customer = db.Customers.Where(p => p.id == _id).First();
-            return customer.money;
+
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Customers customer = db.Customers.Where(p => p.id == _id).First();
+                return customer.money;
+            }
+            catch (System.InvalidOperationException)
+            {
+                return -1;
+            }
         }
         static public int countCustomers()
         {
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             return db.Customers.Count();
+        }
+        static public int getMaxId()
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            if (countCustomers() == 0) return 0;
+            else return db.Customers.OrderByDescending(p => p.id).First().id;
         }
     }
 }

@@ -21,7 +21,6 @@ namespace WPFLayer.ViewModel
                 {
                     book.BookId = value;
                     OnPropertyChange("BookId");
-                    OnPropertyChange("BookRecord");
                 }
             }
         }
@@ -34,8 +33,8 @@ namespace WPFLayer.ViewModel
                 if (book.Title != value)
                 {
                     book.Title = value;
+                    BookCRUD.updateTitle(book.BookId, value);
                     OnPropertyChange("Title");
-                    OnPropertyChange("BookRecord");
                 }
             }
         }
@@ -48,8 +47,8 @@ namespace WPFLayer.ViewModel
                 if (book.Author != value)
                 {
                     book.Author = value;
+                    BookCRUD.updateAuthor(book.BookId, value);
                     OnPropertyChange("Author");
-                    OnPropertyChange("BookRecord");
                 }
             }
         }
@@ -62,8 +61,8 @@ namespace WPFLayer.ViewModel
                 if (book.Type != value)
                 {
                     book.Type = value;
+                    BookCRUD.updateType(book.BookId, value);
                     OnPropertyChange("Type");
-                    OnPropertyChange("BookRecord");
                 }
             }
         }
@@ -76,8 +75,8 @@ namespace WPFLayer.ViewModel
                 if (book.PenaltyCost != value)
                 {
                     book.PenaltyCost = value;
+                    BookCRUD.updatePenaltyCost(book.BookId, value);
                     OnPropertyChange("PenaltyCost");
-                    OnPropertyChange("BookRecord");
                 }
             }
         }
@@ -90,8 +89,8 @@ namespace WPFLayer.ViewModel
                 if (book.ReturnDate != value)
                 {
                     book.ReturnDate = value;
+                    BookCRUD.updateReturnDate(book.BookId, value);
                     OnPropertyChange("ReturnDate");
-                    OnPropertyChange("BookRecord");
                 }
             }
         }
@@ -103,15 +102,10 @@ namespace WPFLayer.ViewModel
                 if (book.State != value)
                 {
                     book.State = value;
+                    BookCRUD.updateState(book.BookId, value);
                     OnPropertyChange("State");
-                    OnPropertyChange("BookRecord");
                 }
             }
-        }
-
-        public string BookRecord
-        {
-            get { return BookId + " " + Title + " " + Author + " " + Type + " " + PenaltyCost + " " + ReturnDate + " " + State; }
         }
 
 
