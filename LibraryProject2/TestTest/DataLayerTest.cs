@@ -41,7 +41,7 @@ namespace TestTest
             LibraryLinqDataContext db = new LibraryLinqDataContext();
 
             Books book = new Books();
-            book.id = 6;
+            book.id = 100;
             book.penaltyCost= 1;
             book.returnDate = null;
             book.state = 1;
@@ -56,8 +56,8 @@ namespace TestTest
 
 
 
-            Books book1 = db.Books.FirstOrDefault(b => b.id.Equals(6));
-            Assert.AreEqual(book1.id, 6);
+            Books book1 = db.Books.FirstOrDefault(b => b.id.Equals(100));
+            Assert.AreEqual(book1.id, 100);
             Assert.AreEqual(book1.penaltyCost, 1);
             Assert.IsNull(book1.returnDate);
             Assert.AreEqual(book1.author, "God");
@@ -74,9 +74,9 @@ namespace TestTest
         {
             LibraryLinqDataContext db = new LibraryLinqDataContext();
 
-            Customers customer = db.Customers.FirstOrDefault(c => c.id.Equals(100));
-            Assert.AreEqual(customer.id, 100);
-            Assert.AreEqual(customer.name, "John");
+            Customers customer = db.Customers.FirstOrDefault(c => c.id.Equals(1));
+            Assert.AreEqual(customer.id, 1);
+            Assert.AreEqual(customer.name, "Mary Smith");
             Assert.AreEqual(customer.money, 100);
 
         }
