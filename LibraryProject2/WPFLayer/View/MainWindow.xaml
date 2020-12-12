@@ -16,19 +16,18 @@
                 <Button Content="Edit" />
                 <Button Content="Delete" />
             </StackPanel>
-
         </DataTemplate>
+
+
+
 
     </Window.Resources>
     <StackPanel>
         <TabControl>
             <TabItem Header="Borrow List">
+
                 <StackPanel>
-                    <Button
-                        x:Name="borrowBtn"
-                        Height="29"
-                        Margin="273,0,297,0"
-                        Content="Check out a book" />
+                    <Button Command="{Binding BorrowBookCommand}" Content="Check out a book" />
                     <ListView
                         Name="bbooks"
                         Width="650"

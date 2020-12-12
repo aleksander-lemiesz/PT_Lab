@@ -17,6 +17,7 @@ namespace WPFLayer.Model
         public BorrowedBook(int _id)
         {
             ViewCommand = new DelegateCommand(ViewDetails);
+          
             BorrowedBookId = _id;
             BCustomerId = BorrowedBookCRUD.getCustomerId(_id);
             BBookId = BorrowedBookCRUD.getBookId(_id);
@@ -46,6 +47,8 @@ namespace WPFLayer.Model
             BorrowedBooksDetails borrowedBooksDetails = new BorrowedBooksDetails(this.BorrowedBookId);
             borrowedBooksDetails.Show();
         }
-    
-}
+
+      
+
+    }
 }

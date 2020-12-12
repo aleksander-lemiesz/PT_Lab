@@ -61,6 +61,10 @@
     <Compile Include="Model\BorrowedBook.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
+    <Page Include="View\BorrowBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BorrowedBooksDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,10 +77,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\BorrowBookActionViewModel.cs" />
     <Compile Include="ViewModel\BorrowedBookViewModel.cs" />
     <Compile Include="ViewModel\BorrowedDetailsViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\ListsViewModel.cs" />
+    <Compile Include="View\BorrowBookWindow.xaml.cs">
+      <DependentUpon>BorrowBookWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BorrowedBooksDetails.xaml.cs">
       <DependentUpon>BorrowedBooksDetails.xaml</DependentUpon>
     </Compile>

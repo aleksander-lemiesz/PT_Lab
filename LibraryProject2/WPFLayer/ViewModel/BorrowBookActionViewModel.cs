@@ -1,21 +1,23 @@
-﻿using Prism.Commands;
-using ServicesLayer;
+﻿using ServicesLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using WPFLayer.Model;
-using WPFLayer.View;
 
 namespace WPFLayer.ViewModel
 {
-    public partial class ListsViewModel : INotifyPropertyChanged
+    class BorrowBookActionViewModel : INotifyPropertyChanged
     {
-
-        // List<Customer> customers;
+        private Customer _scust;
+        public Customer SCustomer
+        {
+            get { return _scust; }
+            set { _scust = value; }
+        }
+        List<Customer> customers;
         public List<Customer> GetCustomers()
         {
             customers = new List<Customer>();
@@ -25,6 +27,14 @@ namespace WPFLayer.ViewModel
             }
             return customers;
         }
+
+        private Book _sbook;
+        public Book SBook
+        {
+            get { return _sbook; }
+            set { _sbook = value; }
+        }
+        List<Book> books;
         public List<Book> GetBooks()
         {
             books = new List<Book>();
@@ -34,38 +44,11 @@ namespace WPFLayer.ViewModel
             }
             return books;
         }
-
-        public List<BorrowedBook> GetBorrowedBooks()
+        public BorrowBookActionViewModel()
         {
-            borroweds = new List<BorrowedBook>();
-            for (int i = 1; i <= BorrowedBookCRUD.countBorrowedBooks(); i++)
-            {
-                borroweds.Add(new BorrowedBook(i));
-            }
-            return borroweds;
-        }
-        public ListsViewModel()
-        {
-            BorrowBookCommand = new DelegateCommand(BorrowBook);
-            //CustomersList.ItemsSource = customers;
 
-
-            //book = new Book(100);
-            //borrowed = new BorrowedBook(100);
+            
         }
-    
-        public ICommand BorrowBookCommand
-        {
-            get;
-            private set;
-        }
-
-        private void BorrowBook()
-        {
-            BorrowBookWindow borrowedBookWindow = new BorrowBookWindow();
-            borrowedBookWindow.Show();
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChange(string v)
