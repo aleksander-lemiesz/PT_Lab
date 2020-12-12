@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\EditReturnDateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,12 +85,16 @@
     <Compile Include="ViewModel\BorrowedBookViewModel.cs" />
     <Compile Include="ViewModel\BorrowedDetailsViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\EditReturnDateViewModel.cs" />
     <Compile Include="ViewModel\ListsViewModel.cs" />
     <Compile Include="View\BorrowBookWindow.xaml.cs">
       <DependentUpon>BorrowBookWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BorrowedBooksDetails.xaml.cs">
       <DependentUpon>BorrowedBooksDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditReturnDateWindow.xaml.cs">
+      <DependentUpon>EditReturnDateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

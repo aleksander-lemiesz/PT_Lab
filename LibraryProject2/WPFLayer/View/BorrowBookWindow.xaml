@@ -9,32 +9,42 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <StackPanel Orientation="Horizontal">
-        <StackPanel>
-            <TextBlock FontSize="20">Choose a customer name:</TextBlock>
-            <ComboBox
-                x:Name="clients"
-                Width="181"
-                Margin="183,39,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                DisplayMemberPath="Name"
-                ItemsSource="{Binding}"
-                SelectedItem="{Binding Path=SCustomer}" Height="38" />
-        </StackPanel>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock FontSize="20">Choose a customer name:</TextBlock>
+                <ComboBox
+                    x:Name="clients"
+                    Width="181"
+                    Height="38"
+                    Margin="183,39,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding}"
+                    SelectedItem="{Binding Path=SCustomer}" />
+            </StackPanel>
 
-        <StackPanel>
-            <TextBlock FontSize="20">Choose a book title:</TextBlock>
-            <ComboBox
-                x:Name="books"
-                Width="181"
-                Margin="183,39,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                DisplayMemberPath="Title"
-                ItemsSource="{Binding}"
-                SelectedItem="{Binding SBook}" Height="40" />
-        </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="20">Choose a book title:</TextBlock>
+                <ComboBox
+                    x:Name="books"
+                    Width="181"
+                    Height="40"
+                    Margin="183,39,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    DisplayMemberPath="Title"
+                    ItemsSource="{Binding}"
+                    SelectedItem="{Binding SBook}" />
+            </StackPanel>
 
+        </StackPanel>
+        <Button
+            Width="76"
+            Height="29"
+            HorizontalAlignment="Left"
+            Command="{Binding AddBorrowBookCommand}"
+            Content="Borrow Book" />
     </StackPanel>
 </Window>

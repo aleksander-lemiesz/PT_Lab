@@ -66,6 +66,13 @@ namespace ServicesLayer
             LibraryLinqDataContext db = new LibraryLinqDataContext();
             return db.BorrowedBooks.Count();
         }
+
+        static public int getMaxId()
+        {
+            LibraryLinqDataContext db = new LibraryLinqDataContext();
+            if (countBorrowedBooks() == 0) return 0;
+            else return db.BorrowedBooks.OrderByDescending(p => p.id).First().id;
+        }
         
     }
 }

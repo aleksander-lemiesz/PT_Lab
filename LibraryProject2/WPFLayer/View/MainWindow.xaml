@@ -9,12 +9,14 @@
     Width="900"
     Height="500"
     mc:Ignorable="d">
+
     <Window.Resources>
+
         <DataTemplate x:Key="RowButtons">
             <StackPanel Orientation="Horizontal">
                 <Button Command="{Binding ViewCommand}" Content="View" />
-                <Button Content="Edit" />
-                <Button Content="Delete" />
+                <Button Command="{Binding EditReturnDateCommand}" Content="Edit Return Date" />
+                <Button Command="{Binding ReturnBookCommand}" Content="Return" />
             </StackPanel>
         </DataTemplate>
 
@@ -27,7 +29,11 @@
             <TabItem Header="Borrow List">
 
                 <StackPanel>
-                    <Button Command="{Binding BorrowBookCommand}" Content="Check out a book" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button Command="{Binding BorrowBookCommand}" Content="Check out a book" />
+                        <Button Click="Button_Click" Content="Refresh" />
+                    </StackPanel>
+
                     <ListView
                         Name="bbooks"
                         Width="650"
@@ -117,10 +123,7 @@
                                 <GridViewColumn Header="ID">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock
-                                                MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"
-                                                Text="{Binding BookId}"
-                                                TextAlignment="Right" />
+                                            <TextBlock Text="{Binding BookId}" TextAlignment="Right" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -128,24 +131,19 @@
 
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock
-                                                MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"
-                                                Text="{Binding Title}"
-                                                TextAlignment="Right" />
+                                            <TextBlock Text="{Binding Title}" TextAlignment="Right" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Author">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock
-                                                MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"
-                                                Text="{Binding Author}"
-                                                TextAlignment="Right" />
+                                            <TextBlock Text="{Binding Author}" TextAlignment="Right" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <!-- <GridViewColumn
+
+                                <GridViewColumn
                                     Width="100"
                                     DisplayMemberBinding="{Binding Path=Type}"
                                     Header="Type" />
@@ -160,7 +158,8 @@
                                 <GridViewColumn
                                     Width="100"
                                     DisplayMemberBinding="{Binding Path=State}"
-                                    Header="State" />-->
+                                    Header="State" />
+
                             </GridView>
                         </ListView.View>
                     </ListView>

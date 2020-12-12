@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WPFLayer.View;
 
@@ -17,6 +18,8 @@ namespace WPFLayer.Model
         public BorrowedBook(int _id)
         {
             ViewCommand = new DelegateCommand(ViewDetails);
+            ReturnBookCommand = new DelegateCommand(ReturnBook);
+            EditReturnDateCommand = new DelegateCommand(EditReturnDate);
           
             BorrowedBookId = _id;
             BCustomerId = BorrowedBookCRUD.getCustomerId(_id);
@@ -48,7 +51,28 @@ namespace WPFLayer.Model
             borrowedBooksDetails.Show();
         }
 
-      
+        public ICommand ReturnBookCommand
+        {
+            get;
+            private set;
+        }
 
+        private void ReturnBook()
+        {
+            BorrowedBookCRUD.returnBook(BorrowedBookId);
+            MessageBox.Show("Borrow record deleted\r\nCurrent customer funds: " + CustomerCRUD.getMoney(BCustomerId));
+        }
+
+        public ICommand EditReturnDateCommand
+        {
+            get;
+            private set;
+        }
+
+        private void EditReturnDate()
+        {
+            EditReturnDateWindow editReturnDateWindow = new EditReturnDateWindow(this.BorrowedBookId);
+            editReturnDateWindow.Show();
+        }
     }
 }

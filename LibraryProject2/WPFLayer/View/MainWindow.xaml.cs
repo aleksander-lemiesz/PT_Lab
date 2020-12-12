@@ -27,17 +27,21 @@ namespace WPFLayer
         public MainWindow()
         {
             InitializeComponent();
-
+            Refresh();
+        }
+       
+        public void Refresh()
+        {
             custs.ItemsSource = _viewModel.GetCustomers();
             vbooks.ItemsSource = _viewModel.GetBooks();
             bbooks.ItemsSource = _viewModel.GetBorrowedBooks();
             DataContext = _viewModel;
-
         }
-        private void TextBlock_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+     
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //var teamName = (e.Source as TextBlock).Text;
-            MessageBox.Show("Hello World");
+            Refresh();
         }
     }
 }
