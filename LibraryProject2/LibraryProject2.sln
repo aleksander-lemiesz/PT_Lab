@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesTests", "ServicesTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFLayer", "WPFLayer\WPFLayer.csproj", "{DE559CA3-3B33-40A3-9548-2C3565BDC560}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFLayerTests", "WPFLayerTests\WPFLayerTests.csproj", "{A4D6AB30-F0BB-4DF5-A8BB-60E4B8C92AB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DE559CA3-3B33-40A3-9548-2C3565BDC560}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE559CA3-3B33-40A3-9548-2C3565BDC560}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE559CA3-3B33-40A3-9548-2C3565BDC560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4D6AB30-F0BB-4DF5-A8BB-60E4B8C92AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4D6AB30-F0BB-4DF5-A8BB-60E4B8C92AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4D6AB30-F0BB-4DF5-A8BB-60E4B8C92AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4D6AB30-F0BB-4DF5-A8BB-60E4B8C92AB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

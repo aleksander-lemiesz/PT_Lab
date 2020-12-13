@@ -63,7 +63,7 @@ namespace WPFLayer.ViewModel
                     if (BorrowedBooks[i] != value[i])
                     {
                         BorrowedBooks[i] = value[i];
-                        BorrowedBookCRUD.returnBook(BorrowedBooks[i].BBookId);
+                       // BorrowedBookCRUD.returnBook(BorrowedBooks[i].BBookId);
                         OnPropertyChange("BorrowedBooks");
                     }
                 }

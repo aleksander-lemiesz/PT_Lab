@@ -25,9 +25,10 @@ namespace WPFLayer.ViewModel
                 }
             }
         }
+        string err = "Error:404";
+        string IDataErrorInfo.Error => throw new NotImplementedException();
 
-        public string Error => throw new NotImplementedException();
-
+ 
         public EditReturnDateViewModel(int _id)
         {
             borrowed = new BorrowedBook(_id);
@@ -41,7 +42,7 @@ namespace WPFLayer.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(v));
             }
         }
-        public string ErrorContent = "Please enter date with correct date format";
+       // public string ErrorContent = "Please enter date with correct date format";
 
             /*get { return ErrorContent; }
             set
@@ -57,14 +58,13 @@ namespace WPFLayer.ViewModel
         {
             get
             {
-                if (columnName == "txtReturnDate")
-                {
+                
                     DateTime date;
                    if (!DateTime.TryParse(this.BookReturnDate.ToString(), out date))
                    {
                          return "Please enter date with correct date format";
                     }
-                }
+                
 
                 return null;
             }

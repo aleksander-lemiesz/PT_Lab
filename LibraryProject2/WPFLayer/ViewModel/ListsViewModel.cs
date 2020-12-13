@@ -16,12 +16,11 @@ namespace WPFLayer.ViewModel
 {
     public partial class ListsViewModel : INotifyPropertyChanged
     {
-
-        // List<Customer> customers;
+                // List<Customer> customers;
         public ObservableCollection<Customer> GetCustomers()
         {
             customers = new ObservableCollection<Customer>();
-            for (int i = 1; i <= CustomerCRUD.countCustomers(); i++)
+            for (int i = 1; i <= CustomerCRUD.getMaxId(); i++)
             {
                 Customer c = new Customer(i);
                 if (c.Name != null) customers.Add(c);
@@ -31,7 +30,7 @@ namespace WPFLayer.ViewModel
         public ObservableCollection<Book> GetBooks()
         {
             books = new ObservableCollection<Book>();
-            for (int i = 1; i <= BookCRUD.countBooks(); i++)
+            for (int i = 1; i <= BookCRUD.getMaxId(); i++)
             {
                 Book b = new Book(i);
                 if (b.State != -1) books.Add(b);
@@ -42,9 +41,10 @@ namespace WPFLayer.ViewModel
         public ObservableCollection<BorrowedBook> GetBorrowedBooks()
         {
             borroweds = new ObservableCollection<BorrowedBook>();
-            for (int i = 1; i <= BorrowedBookCRUD.countBorrowedBooks(); i++)
+            for (int i = 1; i <= BorrowedBookCRUD.getMaxId(); i++)
             {
-                borroweds.Add(new BorrowedBook(i));
+                BorrowedBook bb = new BorrowedBook(i);
+                if (bb.BCustomerId != -1) borroweds.Add(bb);
             }
             return borroweds;
         }

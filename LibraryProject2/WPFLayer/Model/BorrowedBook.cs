@@ -60,8 +60,11 @@ namespace WPFLayer.Model
 
         private void ReturnBook()
         {
-            BorrowedBookCRUD.returnBook(BorrowedBookId);
-            MessageBox.Show("Borrow record deleted\r\nCurrent customer funds: " + CustomerCRUD.getMoney(BCustomerId));
+            if (BorrowedBookCRUD.returnBook(BBookId) == true)
+            {
+                MessageBox.Show("Borrow record deleted\r\nCurrent customer funds: " + CustomerCRUD.getMoney(BCustomerId));
+            }
+            else MessageBox.Show("Couldn't return book.");
         }
 
         public ICommand EditReturnDateCommand
