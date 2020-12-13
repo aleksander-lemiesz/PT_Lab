@@ -33,5 +33,6 @@
             Command="{Binding CustomerSaveCommand}"
             Content="Save"
             Style="{StaticResource GelButton}" />
+
     </StackPanel>
 </Window>

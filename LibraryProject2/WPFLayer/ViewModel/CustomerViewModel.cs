@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -58,17 +59,39 @@ namespace WPFLayer.ViewModel
             get { return GetCustomers(); }
             set
             {
-                for(int i = 0; i < Customers.Count; i++)
-                {
-                    if (Customers[i] != value[i])
+                
+                    if (Customers != value)
                     {
-                        Customers[i] = value[i];
-                        CustomerCRUD.removeCustomer(Customers[i].CustomerId);
-                        OnPropertyChange("Customers");
+                        Customers = value;
+                       OnPropertyChange("Customers");
+                        Customers.CollectionChanged += this.OnCollectionChanged;
                     }
-                }
-               
+                
+
             }
         }
+        
+        
+
+        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            //Get the sender observable collection
+            ObservableCollection<string> obsSender = sender as ObservableCollection<string>;
+
+            List<string> editedOrRemovedItems = new List<string>();
+            foreach (string newItem in e.NewItems)
+            {
+                editedOrRemovedItems.Add(newItem);
+            }
+
+            foreach (string oldItem in e.OldItems)
+            {
+                editedOrRemovedItems.Add(oldItem);
+            }
+
+            //Get the action which raised the collection changed event
+            NotifyCollectionChangedAction action = e.Action;
+        }
     }
+    
 }

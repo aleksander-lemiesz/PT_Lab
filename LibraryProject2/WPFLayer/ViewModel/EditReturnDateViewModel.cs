@@ -9,7 +9,7 @@ using WPFLayer.Model;
 
 namespace WPFLayer.ViewModel
 {
-    public class EditReturnDateViewModel : INotifyPropertyChanged
+    public class EditReturnDateViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         BorrowedBook borrowed;
         Book book;
@@ -25,7 +25,9 @@ namespace WPFLayer.ViewModel
                 }
             }
         }
-        
+
+        public string Error => throw new NotImplementedException();
+
         public EditReturnDateViewModel(int _id)
         {
             borrowed = new BorrowedBook(_id);
@@ -37,6 +39,34 @@ namespace WPFLayer.ViewModel
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(v));
+            }
+        }
+        public string ErrorContent = "Please enter date with correct date format";
+
+            /*get { return ErrorContent; }
+            set
+            {
+                if(ErrorContent != value)
+                {
+                    ErrorContent = value;
+                    OnPropertyChange("ErrorContent");
+                }
+            }*/
+        
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                if (columnName == "txtReturnDate")
+                {
+                    DateTime date;
+                   if (!DateTime.TryParse(this.BookReturnDate.ToString(), out date))
+                   {
+                         return "Please enter date with correct date format";
+                    }
+                }
+
+                return null;
             }
         }
     }

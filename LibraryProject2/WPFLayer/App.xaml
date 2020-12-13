@@ -10,5 +10,19 @@
             <Setter Property="Background" Value="Yellow" />
             <Setter Property="BorderThickness" Value="2" />
         </Style>
+
+        <Style x:Key="GelTextbox" TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+
+                            <AdornedElementPlaceholder />
+                            <TextBlock Text="{Binding ErrorContent}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
