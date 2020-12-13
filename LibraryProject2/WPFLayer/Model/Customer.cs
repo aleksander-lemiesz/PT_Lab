@@ -56,7 +56,17 @@ namespace WPFLayer.Model
         private void CustomerDelete()
         {
             CustomerCRUD.removeCustomer(this.CustomerId);
-            MessageBox.Show("Customer " + Name + " deleted.");
+            if(CustomerCRUD.getName(this.CustomerId) == null)
+            {
+                MessageBox.Show("Customer " + Name + " deleted.");
+            } else if(CustomerCRUD.getMoney(this.CustomerId) < 0)
+            {
+                MessageBox.Show("Cannot delete customer " + Name + ". He or she has a debt: " + Money + ".");
+            } else
+            {
+                MessageBox.Show("Cannot delete customer " + Name + ". He or she has borrowed a book.");
+            }
+            
         }
 
         public ICommand CustomerEditCommand

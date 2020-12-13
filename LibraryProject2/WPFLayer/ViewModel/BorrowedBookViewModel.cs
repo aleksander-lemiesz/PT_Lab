@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ServicesLayer;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,7 @@ namespace WPFLayer.ViewModel
     public partial class ListsViewModel : INotifyPropertyChanged
     {
         private BorrowedBook borrowed;
-        private List<BorrowedBook> borroweds;
+        private ObservableCollection<BorrowedBook> borroweds;
         public int BorrowedBookId
         {
             get { return borrowed.BorrowedBookId; }
@@ -23,7 +25,6 @@ namespace WPFLayer.ViewModel
                 {
                     borrowed.BorrowedBookId = value;
                     OnPropertyChange("BorrowedBookId");
-                    OnPropertyChange("BorrowedBookRecord");
                 }
             }
         }
@@ -36,7 +37,6 @@ namespace WPFLayer.ViewModel
                 {
                     borrowed.BBookId = value;
                     OnPropertyChange("BBookId");
-                    OnPropertyChange("BorrowedBookRecord");
                 }
             }
         }
@@ -49,13 +49,26 @@ namespace WPFLayer.ViewModel
                 {
                     borrowed.BCustomerId = value;
                     OnPropertyChange("BCustomerId");
-                    OnPropertyChange("BorrowedBookRecord");
                 }
             }
         }
-        public string BorrowedBookRecord
+
+        public ObservableCollection<BorrowedBook> BorrowedBooks
         {
-            get { return BorrowedBookId + " " + BBookId + " " + BCustomerId; }
+            get { return GetBorrowedBooks(); }
+            set
+            {
+                for (int i = 0; i < Customers.Count; i++)
+                {
+                    if (BorrowedBooks[i] != value[i])
+                    {
+                        BorrowedBooks[i] = value[i];
+                        BorrowedBookCRUD.returnBook(BorrowedBooks[i].BBookId);
+                        OnPropertyChange("BorrowedBooks");
+                    }
+                }
+
+            }
         }
     }
 }

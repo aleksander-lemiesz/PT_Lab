@@ -23,7 +23,7 @@ namespace WPFLayer.View
         public BookEditWindow(int _id)
         {
             InitializeComponent();
-            ListsViewModel _viewModel = new ListsViewModel(_id);
+            ListsViewModel _viewModel = new ListsViewModel(_id, "book");
             DataContext = _viewModel;
         }
     }

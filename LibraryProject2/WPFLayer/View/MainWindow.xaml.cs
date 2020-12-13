@@ -43,5 +43,7 @@ namespace WPFLayer
         {
             Refresh();
         }
+
+      
     }
 }

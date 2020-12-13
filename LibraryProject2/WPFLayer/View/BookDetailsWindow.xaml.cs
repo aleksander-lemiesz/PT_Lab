@@ -24,7 +24,7 @@ namespace WPFLayer.View
         public BookDetailsWindow(int _id)
         {
             InitializeComponent();
-            ListsViewModel _viewModel = new ListsViewModel(_id);
+            ListsViewModel _viewModel = new ListsViewModel(_id, "book");
             this.DataContext = _viewModel;
         }
     }

@@ -6,63 +6,102 @@
     xmlns:local="clr-namespace:WPFLayer"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="900"
-    Height="500"
+    Width="915"
+    Height="550"
     mc:Ignorable="d">
 
     <Window.Resources>
-
         <DataTemplate x:Key="RowButtons">
             <StackPanel Orientation="Horizontal">
-                <Button Command="{Binding ViewCommand}" Content="View" />
-                <Button Command="{Binding EditReturnDateCommand}" Content="Edit Return Date" />
-                <Button Command="{Binding ReturnBookCommand}" Content="Return" />
+                <Button
+                    Margin="5"
+                    Command="{Binding ViewCommand}"
+                    Content="View"
+                    Style="{StaticResource GelButton}" />
+                <Button
+                    Margin="5"
+                    Command="{Binding EditReturnDateCommand}"
+                    Content="Edit Return Date"
+                    Style="{StaticResource GelButton}" />
+                <Button
+                    Margin="5"
+                    Command="{Binding ReturnBookCommand}"
+                    Content="Return"
+                    Style="{StaticResource GelButton}" />
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="CustomerRowButtons">
             <StackPanel Orientation="Horizontal">
-                <Button Command="{Binding CustomerViewCommand}" Content="View" />
-                <Button Command="{Binding CustomerEditCommand}" Content="Edit" />
-                <Button Command="{Binding CustomerDeleteCommand}" Content="Delete" />
+                <Button
+                    Margin="5"
+                    Command="{Binding CustomerViewCommand}"
+                    Content="View"
+                    Style="{StaticResource GelButton}" />
+                <Button
+                    Margin="5"
+                    Command="{Binding CustomerEditCommand}"
+                    Content="Edit"
+                    Style="{StaticResource GelButton}" />
+                <Button
+                    Margin="5"
+                    Command="{Binding CustomerDeleteCommand}"
+                    Content="Delete"
+                    Style="{StaticResource GelButton}" />
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="BookRowButtons">
             <StackPanel Orientation="Horizontal">
-                <Button Command="{Binding BookViewCommand}" Content="View" />
-                <Button Command="{Binding BookEditCommand}" Content="Edit" />
-                <Button Command="{Binding BookDeleteCommand}" Content="Delete" />
+                <Button
+                    Margin="5"
+                    Command="{Binding BookViewCommand}"
+                    Content="View"
+                    Style="{StaticResource GelButton}" />
+                <Button
+                    Margin="5"
+                    Command="{Binding BookEditCommand}"
+                    Content="Edit"
+                    Style="{StaticResource GelButton}" />
+                <Button
+                    Margin="5"
+                    Command="{Binding BookDeleteCommand}"
+                    Content="Delete"
+                    Style="{StaticResource GelButton}" />
             </StackPanel>
         </DataTemplate>
-
-
     </Window.Resources>
+
+
     <StackPanel>
         <TabControl>
-            <TabItem Header="Borrow List">
-                <StackPanel>
+            <TabItem Width="100" Header="Borrow List">
+                <StackPanel Background="LightYellow">
                     <StackPanel Orientation="Horizontal">
                         <Button
                             x:Name="borrowBtn"
-                            Width="450"
+                            Width="433"
                             Height="29"
+                            Margin="5"
                             Command="{Binding BorrowBookCommand}"
-                            Content="Check out a book" />
+                            Content="Check out a book"
+                            Style="{StaticResource GelButton}" />
+
                         <Button
                             x:Name="refreshBtn"
-                            Width="450"
+                            Width="433"
                             Height="29"
+                            Margin="5"
                             Click="Button_Click"
-                            Content="Refresh" />
+                            Content="Refresh"
+                            Style="{StaticResource GelButton}" />
                     </StackPanel>
-
                     <ListView
-                        Name="bbooks"
+                        x:Name="bbooks"
                         Width="650"
                         Height="400"
-                        Margin="8"
-                        ItemsSource="{Binding}">
+                        Margin="118,8,118.667,8"
+                        ItemsSource="{Binding BorrowedBooks}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="Auto" Header="ID">
@@ -77,11 +116,11 @@
                                 </GridViewColumn>
                                 <GridViewColumn
                                     Width="100"
-                                    DisplayMemberBinding="{Binding Path=BCustomerId}"
+                                    DisplayMemberBinding="{Binding BCustomerId}"
                                     Header="Customer" />
                                 <GridViewColumn
                                     Width="100"
-                                    DisplayMemberBinding="{Binding Path=BBookId}"
+                                    DisplayMemberBinding="{Binding BBookId}"
                                     Header="Book" />
                                 <GridViewColumn CellTemplate="{StaticResource RowButtons}" />
                             </GridView>
@@ -89,21 +128,25 @@
                     </ListView>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Customers">
-                <StackPanel>
+            <TabItem Width="100" Header="Customers">
+                <StackPanel Background="LightYellow">
                     <StackPanel Orientation="Horizontal">
                         <Button
                             x:Name="addCustomerBtn"
-                            Width="450"
+                            Width="433"
                             Height="29"
+                            Margin="5"
                             Command="{Binding CustomerAddCommand}"
-                            Content="Add Customer" />
+                            Content="Add Customer"
+                            Style="{StaticResource GelButton}" />
                         <Button
                             x:Name="refreshBtn2"
-                            Width="450"
+                            Width="433"
                             Height="29"
+                            Margin="5"
                             Click="Button_Click"
-                            Content="Refresh" />
+                            Content="Refresh"
+                            Style="{StaticResource GelButton}" />
                     </StackPanel>
 
                     <ListView
@@ -111,7 +154,7 @@
                         Width="650"
                         Height="400"
                         Margin="8"
-                        ItemsSource="{Binding}">
+                        ItemsSource="{Binding Customers}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="Auto" Header="ID">
@@ -134,27 +177,33 @@
                     </ListView>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Books">
-                <StackPanel>
+            <TabItem Width="100" Header="Books">
+                <StackPanel Background="LightYellow">
                     <StackPanel Orientation="Horizontal">
                         <Button
                             x:Name="addBookBtn"
-                            Width="450"
+                            Width="433"
                             Height="29"
+                            Margin="5"
                             Command="{Binding BookAddCommand}"
-                            Content="Add Book" />
+                            Content="Add Book"
+                            Style="{StaticResource GelButton}" />
                         <Button
                             x:Name="refreshBtn3"
-                            Width="450"
+                            Width="433"
                             Height="29"
+                            Margin="5"
                             Click="Button_Click"
-                            Content="Refresh" />
+                            Content="Refresh"
+                            Style="{StaticResource GelButton}" />
                     </StackPanel>
 
                     <ListView
                         Name="vbooks"
+                        Width="650"
+                        Height="400"
                         Margin="8"
-                        ItemsSource="{Binding}">
+                        ItemsSource="{Binding Books}">
                         <ListView.View>
 
                             <GridView x:Name="G1">

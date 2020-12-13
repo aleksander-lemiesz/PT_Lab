@@ -6,5 +6,9 @@
     StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <DataTemplate x:Key="CustomersList" />
+        <Style x:Key="GelButton" TargetType="Button">
+            <Setter Property="Background" Value="Yellow" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
     </Application.Resources>
 </Application>

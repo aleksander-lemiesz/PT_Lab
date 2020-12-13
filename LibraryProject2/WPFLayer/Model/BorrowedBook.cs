@@ -32,12 +32,13 @@ namespace WPFLayer.Model
 
         public string BookInfo()
         {
-            return "Title: " + BookCRUD.getTitle(BBookId) + " Author: " + BookCRUD.getAuthor(BBookId) 
-                + "\r\nType: " + BookCRUD.getType(BBookId) + " PenaltyCost: " + BookCRUD.getPenaltyCost(BBookId);
+            return "\r\nTitle: " + BookCRUD.getTitle(BBookId) + "\r\nAuthor: " + BookCRUD.getAuthor(BBookId) 
+                + "\r\nType: " + BookCRUD.getType(BBookId) + "\r\nPenalty Cost: " + BookCRUD.getPenaltyCost(BBookId)
+                + "\r\nReturn Date: " + BookCRUD.getReturnDate(BBookId);
         }
         public string CustomerInfo()
         {
-            return "Name: " + CustomerCRUD.getName(BCustomerId) + " Money: " + CustomerCRUD.getMoney(BCustomerId);
+            return "\r\nName: " + CustomerCRUD.getName(BCustomerId) + "\r\nMoney: " + CustomerCRUD.getMoney(BCustomerId);
         }
         public ICommand ViewCommand
         {

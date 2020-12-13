@@ -9,15 +9,18 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel>
-                <TextBlock FontSize="20">Choose a customer name:</TextBlock>
+    <StackPanel Background="LightYellow">
+        <StackPanel Margin="50" Orientation="Horizontal">
+            <StackPanel Width="400">
+                <TextBlock
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Choose a customer name:" />
+
                 <ComboBox
                     x:Name="clients"
                     Width="181"
                     Height="38"
-                    Margin="183,39,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     DisplayMemberPath="Name"
@@ -25,13 +28,15 @@
                     SelectedItem="{Binding Path=SCustomer}" />
             </StackPanel>
 
-            <StackPanel>
-                <TextBlock FontSize="20">Choose a book title:</TextBlock>
+            <StackPanel Width="311">
+                <TextBlock
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Choose a book title:" />
                 <ComboBox
                     x:Name="books"
                     Width="181"
                     Height="40"
-                    Margin="183,39,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     DisplayMemberPath="Title"
@@ -41,10 +46,13 @@
 
         </StackPanel>
         <Button
-            Width="76"
+            Width="190"
             Height="29"
-            HorizontalAlignment="Left"
+            Margin="0,200,10,100"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
             Command="{Binding AddBorrowBookCommand}"
-            Content="Borrow Book" />
+            Content="Borrow Book"
+            Style="{StaticResource GelButton}" />
     </StackPanel>
 </Window>

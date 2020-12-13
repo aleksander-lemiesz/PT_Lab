@@ -10,81 +10,138 @@ namespace ServicesLayer
     {
         static public bool addBook(int _id, string _title, string _author, string _type, int _penaltyCost, DateTime _returnDate, int _state)
         {
-            Books book = new Books();
-            book.id = _id;
-            book.title = _title;
-            book.author = _author;
-            book.type = _type;
-            book.penaltyCost = _penaltyCost;
-            book.returnDate = _returnDate;
-            book.state = _state;
+            try
+            {
+                Books book = new Books();
+                book.id = _id;
+                book.title = _title;
+                book.author = _author;
+                book.type = _type;
+                book.penaltyCost = _penaltyCost;
+                book.returnDate = _returnDate;
+                book.state = _state;
 
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            db.Books.InsertOnSubmit(book);
-            db.SubmitChanges();
-            return true;
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                db.Books.InsertOnSubmit(book);
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
         static public bool removeBook(int _id)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).First();
-            db.Books.DeleteOnSubmit(book);
-            db.SubmitChanges();
-            return true;
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Books book = db.Books.Where(p => p.id == _id).First();
+                db.Books.DeleteOnSubmit(book);
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         static public bool updateTitle(int _id, string _title)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).FirstOrDefault();
-            book.title = _title;
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Books book = db.Books.Where(p => p.id == _id).FirstOrDefault();
+                book.title = _title;
 
-            db.SubmitChanges();
-            return true;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         static public bool updateAuthor(int _id, string _author)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).First();
-            book.author = _author;
-            db.SubmitChanges();
-            return true;
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Books book = db.Books.Where(p => p.id == _id).First();
+                book.author = _author;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         static public bool updateType(int _id, string _type)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).First();
-            book.type = _type;
-            db.SubmitChanges();
-            return true;
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Books book = db.Books.Where(p => p.id == _id).First();
+                book.type = _type;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         static public bool updatePenaltyCost(int _id, int _penaltyCost)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).First();
-            book.penaltyCost = 10;
-            db.SubmitChanges();
-            return true;
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Books book = db.Books.Where(p => p.id == _id).First();
+                book.penaltyCost = 10;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         static public bool updateReturnDate(int _id, DateTime _returnDate)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).First();
-            book.returnDate = _returnDate;
-            db.SubmitChanges();
-            return true;
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Books book = db.Books.Where(p => p.id == _id).First();
+                book.returnDate = _returnDate;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         static public bool updateState(int _id, int _state)
         {
-            LibraryLinqDataContext db = new LibraryLinqDataContext();
-            Books book = db.Books.Where(p => p.id == _id).First();
-            book.state = _state;
-            db.SubmitChanges();
-            return true;
+            try
+            {
+                LibraryLinqDataContext db = new LibraryLinqDataContext();
+                Books book = db.Books.Where(p => p.id == _id).First();
+                book.state = _state;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         static public Books getBook(int _id)

@@ -1,6 +1,7 @@
 ﻿using ServicesLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace WPFLayer.ViewModel
     public partial class ListsViewModel : INotifyPropertyChanged
     {
         private Customer customer;
-        private List<Customer> customers;
+        private ObservableCollection<Customer> customers;
         public int CustomerId
         {
             get { return customer.CustomerId; }
@@ -49,6 +50,24 @@ namespace WPFLayer.ViewModel
                     CustomerCRUD.updateMoney(customer.CustomerId, value);
                     OnPropertyChange("Money");
                 }
+            }
+        }
+
+        public ObservableCollection<Customer> Customers
+        {
+            get { return GetCustomers(); }
+            set
+            {
+                for(int i = 0; i < Customers.Count; i++)
+                {
+                    if (Customers[i] != value[i])
+                    {
+                        Customers[i] = value[i];
+                        CustomerCRUD.removeCustomer(Customers[i].CustomerId);
+                        OnPropertyChange("Customers");
+                    }
+                }
+               
             }
         }
     }

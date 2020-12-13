@@ -9,8 +9,13 @@
     Width="300"
     Height="300"
     mc:Ignorable="d">
-    <StackPanel>
-        <TextBlock Text="Return date:" />
-        <TextBox Text="{Binding BookReturnDate}" />
+    <StackPanel Background="LightYellow">
+        <StackPanel Margin="3" Orientation="Horizontal">
+            <TextBlock
+                FontSize="16"
+                FontWeight="Bold"
+                Text="Return date: " />
+            <TextBox FontSize="16" Text="{Binding BookReturnDate}" />
+        </StackPanel>
     </StackPanel>
 </Window>

@@ -2,6 +2,7 @@
 using ServicesLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,9 @@ namespace WPFLayer.ViewModel
     {
 
         // List<Customer> customers;
-        public List<Customer> GetCustomers()
+        public ObservableCollection<Customer> GetCustomers()
         {
-            customers = new List<Customer>();
+            customers = new ObservableCollection<Customer>();
             for (int i = 1; i <= CustomerCRUD.countCustomers(); i++)
             {
                 Customer c = new Customer(i);
@@ -27,9 +28,9 @@ namespace WPFLayer.ViewModel
             }
             return customers;
         }
-        public List<Book> GetBooks()
+        public ObservableCollection<Book> GetBooks()
         {
-            books = new List<Book>();
+            books = new ObservableCollection<Book>();
             for (int i = 1; i <= BookCRUD.countBooks(); i++)
             {
                 Book b = new Book(i);
@@ -38,9 +39,9 @@ namespace WPFLayer.ViewModel
             return books;
         }
 
-        public List<BorrowedBook> GetBorrowedBooks()
+        public ObservableCollection<BorrowedBook> GetBorrowedBooks()
         {
-            borroweds = new List<BorrowedBook>();
+            borroweds = new ObservableCollection<BorrowedBook>();
             for (int i = 1; i <= BorrowedBookCRUD.countBorrowedBooks(); i++)
             {
                 borroweds.Add(new BorrowedBook(i));
@@ -49,17 +50,31 @@ namespace WPFLayer.ViewModel
         }
         public ListsViewModel()
         {
+
             BorrowBookCommand = new DelegateCommand(BorrowBook);
             BookAddCommand = new DelegateCommand(BookAdd);
             CustomerAddCommand = new DelegateCommand(CustomerAdd);
             CustomerSaveCommand = new DelegateCommand(CustomerSave);
             BookSaveCommand = new DelegateCommand(BookSave);
+
+
+            int _id = CustomerCRUD.getMaxId() + 1;
+            customer = new Customer(_id, "name", 0);
+
+            int _id2 = BookCRUD.getMaxId() + 1;
+            book = new Book(_id2, "title", "author", "type", 0, DateTime.Today, 0);
         }
 
-        public ListsViewModel(int _id)
+        public ListsViewModel(int _id, string _type)
         {
-            book = new Book(_id);
-            customer = new Customer(_id);
+            if(_type == "book")
+            {
+                book = new Book(_id);
+            }
+            else
+            {
+                customer = new Customer(_id);
+            }
         }
 
 
@@ -94,14 +109,6 @@ namespace WPFLayer.ViewModel
 
         private void BookSave()
         {
-
-           /* this.Title = "title";
-            this.Author = "author";
-            this.Type = "type";
-            this.PenaltyCost = 0;
-            this.ReturnDate = DateTime.Today;
-            this.State = 0;*/
-
             int _id = BookCRUD.getMaxId() + 1;
             BookCRUD.addBook(_id, this.Title, this.Author, this.Type, this.PenaltyCost, this.ReturnDate, this.State);
             MessageBox.Show("Book " + this.Title + " added.");
@@ -116,8 +123,6 @@ namespace WPFLayer.ViewModel
         private void CustomerAdd()
         {
            
-            int _id = CustomerCRUD.getMaxId() + 1;
-            customer = new Customer(_id, "name", 0);
             CustomerAddWindow customerAddWindow = new CustomerAddWindow();
             customerAddWindow.Show();
         }
@@ -129,9 +134,7 @@ namespace WPFLayer.ViewModel
 
         private void CustomerSave()
         {
-            
-           
-            CustomerCRUD.addCustomer(this.BookId, this.Name, this.Money);
+            CustomerCRUD.addCustomer(this.CustomerId, this.Name, this.Money);
             MessageBox.Show("Customer " + this.Name + " added.");
 
         }

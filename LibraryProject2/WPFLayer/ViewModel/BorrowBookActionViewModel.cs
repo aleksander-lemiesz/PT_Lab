@@ -20,7 +20,9 @@ namespace WPFLayer.ViewModel
         public Customer SCustomer
         {
             get { return _scust; }
-            set { _scust = value;
+            set
+            {
+                _scust = value;
                 OnPropertyChange("SCustomer");
             }
         }
@@ -39,7 +41,9 @@ namespace WPFLayer.ViewModel
         public Book SBook
         {
             get { return _sbook; }
-            set { _sbook = value;
+            set
+            {
+                _sbook = value;
                 OnPropertyChange("SBook");
             }
         }
@@ -50,7 +54,7 @@ namespace WPFLayer.ViewModel
             for (int i = 1; i <= BookCRUD.countBooks(); i++)
             {
                 Book b = new Book(i);
-                if(b.State == 1) books.Add(b);
+                if (b.State == 1) books.Add(b);
             }
             return books;
         }
@@ -70,9 +74,16 @@ namespace WPFLayer.ViewModel
         {
             int _id = BorrowedBookCRUD.getMaxId() + 1;
             bool res = BorrowedBookCRUD.borrowBook(_id, SCustomer.CustomerId, SBook.BookId);
-            if (res == false) MessageBox.Show("Customer " + SCustomer.Name + " does not have enough funds to borrow this book.");
-            else MessageBox.Show("Book " + SBook.Title + " borrowed by " + SCustomer.Name + ". It needs to be returned before " + SBook.ReturnDate + ".");
-            
+            if (res == false)
+            {
+                if (SCustomer.Money < 0)
+                {
+                    MessageBox.Show("Customer " + SCustomer.Name + " does not have enough funds to borrow this book.");
+                }
+                else MessageBox.Show("Book already borrowed.");
+            }
+            else MessageBox.Show("Book " + SBook.Title + " borrowed by " + SCustomer.Name + ". It needs to be returned before " + DateTime.Today.AddDays(14) + ".");
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

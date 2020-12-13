@@ -23,7 +23,7 @@ namespace WPFLayer.View
         public CustomerDetailsWindow(int _id)
         {
             InitializeComponent();
-            ListsViewModel _viewModel = new ListsViewModel(_id);
+            ListsViewModel _viewModel = new ListsViewModel(_id, "customer");
             this.DataContext = _viewModel;
         }
     }

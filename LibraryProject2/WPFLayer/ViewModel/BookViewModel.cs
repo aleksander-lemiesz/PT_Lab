@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Text;
 using WPFLayer.Model;
 using ServicesLayer;
+using System.Collections.ObjectModel;
 
 namespace WPFLayer.ViewModel
 {
     public partial class ListsViewModel : INotifyPropertyChanged
     {
         private Book book;
-        private List<Book> books;
+        private ObservableCollection<Book> books;
 
         public int BookId
         {
@@ -105,6 +106,24 @@ namespace WPFLayer.ViewModel
                     BookCRUD.updateState(book.BookId, value);
                     OnPropertyChange("State");
                 }
+            }
+        }
+
+        public ObservableCollection<Book> Books
+        {
+            get { return GetBooks(); }
+            set
+            {
+                for (int i = 0; i < Customers.Count; i++)
+                {
+                    if (Books[i] != value[i])
+                    {
+                        Books[i] = value[i];
+                        BookCRUD.removeBook(Books[i].BookId);
+                        OnPropertyChange("Books");
+                    }
+                }
+
             }
         }
 
