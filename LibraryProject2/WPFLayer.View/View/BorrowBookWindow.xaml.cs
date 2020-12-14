@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPFLayer.Lib.ViewModel;
 using WPFLayer.ViewModel;
 
 namespace WPFLayer.View
@@ -18,15 +19,16 @@ namespace WPFLayer.View
     /// <summary>
     /// Logika interakcji dla klasy BorrowBookWindow.xaml
     /// </summary>
-    public partial class BorrowBookWindow : Window
+    public partial class BorrowBookWindow : Window, IWindow
     {
-        //public BorrowBookActionViewModel _viewModel = new BorrowBookActionViewModel();
-        public BorrowBookWindow()
+          public BorrowBookWindow()
         {
             InitializeComponent();
-            // clients.ItemsSource = _viewModel.GetCustomers();
-            // books.ItemsSource = _viewModel.GetBooks();
-            BorrowBookWindow _vm = (BorrowBookWindow)DataContext;
+            BorrowBookActionViewModel _vm = new BorrowBookActionViewModel();
+            clients.ItemsSource = _vm.GetCustomers();
+            books.ItemsSource = _vm.GetBooks();
+            DataContext = _vm;
+
         }
     }
 }

@@ -16,7 +16,7 @@ using WPFLayer.Lib.ViewModel;
 using WPFLayer.Model;
 using WPFLayer.View;
 using WPFLayer.ViewModel;
-
+using WPFLayer.Lib;
 namespace WPFLayer
 {
     /// <summary>
@@ -25,7 +25,7 @@ namespace WPFLayer
 
     public partial class MainWindow : Window, IWindow
     {
-        private readonly ListsViewModel _viewModel = new ListsViewModel();
+        private readonly ListsViewModel _vm = new ListsViewModel();
         public MainWindow()
         {
             InitializeComponent();
@@ -34,16 +34,17 @@ namespace WPFLayer
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            ListsViewModel _vm = (ListsViewModel)DataContext;
-            //_vm.ChildWindow = new Lazy<IWindow>(() => new EditReturnDateWindow(1));
-           // _vm.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK);
+            //ListsViewModel _vm = (ListsViewModel)DataContext;
+            DataContext = _vm;
+            _vm.ChildWindow = new Lazy<IWindow>(() => new BorrowBookWindow());
+             _vm.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK);
         }
         public void Refresh()
         {
             //custs.ItemsSource = _viewModel.GetCustomers();
             //vbooks.ItemsSource = _viewModel.GetBooks();
           // bbooks.ItemsSource = _viewModel.GetBorrowedBooks();
-            DataContext = _viewModel;
+            DataContext = _vm;
         }
      
 

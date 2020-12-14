@@ -57,9 +57,7 @@ namespace WPFLayer.ViewModel
             CustomerSaveCommand = new DelegateCommand(CustomerSave);
             BookSaveCommand = new DelegateCommand(BookSave);
 
-            DisplayTextCommand = new DelegateCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
-            m_ActionText = "Text to be displayed on the popup";
-
+           
             int _id = CustomerCRUD.getMaxId() + 1;
             customer = new Customer(_id, "name", 0);
 
@@ -91,8 +89,6 @@ namespace WPFLayer.ViewModel
         {
             IWindow _child = ChildWindow.Value;
             _child.Show();
-            // BorrowBookWindow borrowedBookWindow = new BorrowBookWindow();
-            //  borrowedBookWindow.Show();
         }
         public ICommand DisplayTextCommand
         {

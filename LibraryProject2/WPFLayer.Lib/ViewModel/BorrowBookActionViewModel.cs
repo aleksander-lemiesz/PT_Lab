@@ -12,7 +12,7 @@ using WPFLayer.Model;
 
 namespace WPFLayer.ViewModel
 {
-    class BorrowBookActionViewModel : INotifyPropertyChanged
+    public class BorrowBookActionViewModel : INotifyPropertyChanged
     {
 
         private Customer _scust;
@@ -60,9 +60,32 @@ namespace WPFLayer.ViewModel
         public BorrowBookActionViewModel()
         {
             AddBorrowBookCommand = new DelegateCommand(AddBorrowBook);
+          //  DisplayTextCommand = new DelegateCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
+            m_ActionText = "Text to be displayed on the popup";
+
 
         }
+        public ICommand DisplayTextCommand
+        {
+            get; private set;
+        }
+        private string m_ActionText;
+        public string ActionText
+        {
+            get => m_ActionText;
+            set
+            {
+                m_ActionText = value;/*
+                DisplayTextCommand.RaiseCanExecuteChanged();
+                RaisePropertyChanged();*/
+            }
+        }
+        public Action<string> MessageBoxShowDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBoxShowDelegate)} must be assigned by the view layer");
 
+        private void ShowPopupWindow()
+        {
+            MessageBoxShowDelegate(ActionText);
+        }
         public ICommand AddBorrowBookCommand
         {
             get;

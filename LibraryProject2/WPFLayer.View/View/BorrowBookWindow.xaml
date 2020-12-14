@@ -42,17 +42,29 @@
                     DisplayMemberPath="Title"
                     ItemsSource="{Binding}"
                     SelectedItem="{Binding SBook}" />
+                <Popup
+                    Height="244"
+                    Margin="0,0,0.333,0"
+                    IsOpen="{Binding ElementName=addBtn, Path=IsChecked}"
+                    RenderTransformOrigin="0.539,1.322">
+
+                    <StackPanel>
+                        <TextBlock Background="White" Text="Book borrowed." />
+
+                    </StackPanel>
+                </Popup>
             </StackPanel>
 
         </StackPanel>
-        <Button
+        <ToggleButton
+            x:Name="addBtn"
             Width="190"
             Height="29"
             Margin="0,200,10,100"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Command="{Binding AddBorrowBookCommand}"
-            Content="Borrow Book"
-            Style="{StaticResource GelButton}" />
+            Content="Borrow Book" />
+
     </StackPanel>
 </Window>
