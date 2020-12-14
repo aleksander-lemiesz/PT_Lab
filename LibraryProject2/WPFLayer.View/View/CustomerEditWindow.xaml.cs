@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPFLayer.Lib.ViewModel;
 using WPFLayer.ViewModel;
 
 namespace WPFLayer.View
@@ -18,7 +19,7 @@ namespace WPFLayer.View
     /// <summary>
     /// Logika interakcji dla klasy CustomerEditWindow.xaml
     /// </summary>
-    public partial class CustomerEditWindow : Window
+    public partial class CustomerEditWindow : Window, IWindow
     {
         public CustomerEditWindow(int _id)
         {

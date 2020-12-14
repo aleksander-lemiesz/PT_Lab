@@ -16,9 +16,7 @@ namespace WPFLayer.Model
 
         public Book(int _id)
         {
-            //BookViewCommand = new DelegateCommand(BookView);
-            BookDeleteCommand = new DelegateCommand(BookDelete);
-            BookEditCommand = new DelegateCommand(BookEdit);
+
 
             BookId = _id;
             Title = BookCRUD.getTitle(_id);
@@ -27,7 +25,6 @@ namespace WPFLayer.Model
             PenaltyCost = BookCRUD.getPenaltyCost(_id);
             ReturnDate = BookCRUD.getReturnDate(_id);
             State = BookCRUD.getState(_id);
-
         }
 
         public Book(int _id, string _title, string _author, string _type, int _penaltyCost, DateTime _returnDate, int _state)
@@ -48,50 +45,6 @@ namespace WPFLayer.Model
         public int PenaltyCost { get; set; }
         public DateTime ReturnDate { get; set; }
         public int State { get; set; }
-        public Lazy<IWindow> ChildWindow2 { get; set; }
-      /*  public ICommand BookViewCommand
-        {
-            get;
-            private set;
-        }
-
-        private void BookView()
-        {
-            // BookDetailsWindow bookDetailsWindow = new BookDetailsWindow(this.BookId);
-            // bookDetailsWindow.Show();
-        }*/
-
-        public ICommand BookDeleteCommand
-        {
-            get;
-            private set;
-        }
-
-        private void BookDelete()
-        {
-            BookCRUD.removeBook(this.BookId);
-            if (BookCRUD.getTitle(this.BookId) == null)
-            {
-               // MessageBox.Show("Book " + Title + " by " + Author + " deleted.");
-            }
-            else
-            {
-              // MessageBox.Show("Cannot delete a book " + Title + ". It is currently borrowed to a customer.");
-            }
-            
-        }
-
-        public ICommand BookEditCommand
-        {
-            get;
-            private set;
-        }
-
-        private void BookEdit()
-        {
-            //BookEditWindow bookEditWindow = new BookEditWindow(this.BookId);
-           // bookEditWindow.Show();
-        }
     }
 }
 

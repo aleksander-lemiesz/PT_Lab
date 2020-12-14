@@ -15,6 +15,18 @@ namespace WPFLayer.ViewModel
     {
         private Customer customer;
         private ObservableCollection<Customer> customers;
+        public Customer c
+        {
+            get { return customer; }
+            set
+            {
+                if (customer != value)
+                {
+                    customer = value;
+                    OnPropertyChange("c");
+                }
+            }
+        }
         public int CustomerId
         {
             get { return customer.CustomerId; }

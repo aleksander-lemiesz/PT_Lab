@@ -15,6 +15,18 @@ namespace WPFLayer.ViewModel
     {
         private BorrowedBook borrowed;
         private ObservableCollection<BorrowedBook> borroweds;
+        public BorrowedBook bb
+        {
+            get { return borrowed; }
+            set
+            {
+                if (borrowed != value)
+                {
+                    borrowed = value;
+                    OnPropertyChange("bb");
+                }
+            }
+        }
         public int BorrowedBookId
         {
             get { return borrowed.BorrowedBookId; }

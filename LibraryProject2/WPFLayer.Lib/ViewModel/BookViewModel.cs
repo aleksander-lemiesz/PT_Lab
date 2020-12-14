@@ -12,7 +12,18 @@ namespace WPFLayer.ViewModel
     {
         private Book book;
         private ObservableCollection<Book> books;
-
+        public Book b
+        {
+            get { return book; }
+            set
+            {
+                if (book != value)
+                {
+                    book = value;
+                    OnPropertyChange("b");
+                }
+            }
+        }
         public int BookId
         {
             get { return book.BookId; }

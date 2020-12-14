@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WPFLayer.Lib.ViewModel;
 
 namespace WPFLayer.Model
 {
@@ -16,10 +17,7 @@ namespace WPFLayer.Model
      
         public BorrowedBook(int _id)
         {
-            ViewCommand = new DelegateCommand(ViewDetails);
-            ReturnBookCommand = new DelegateCommand(ReturnBook);
-            EditReturnDateCommand = new DelegateCommand(EditReturnDate);
-          
+           
             BorrowedBookId = _id;
             BCustomerId = BorrowedBookCRUD.getCustomerId(_id);
             BBookId = BorrowedBookCRUD.getBookId(_id);
@@ -28,6 +26,7 @@ namespace WPFLayer.Model
         public int BorrowedBookId { get; set; }
         public int BCustomerId { get; set; }
         public int BBookId { get; set; }
+       
 
         public string BookInfo()
         {
@@ -39,43 +38,6 @@ namespace WPFLayer.Model
         {
             return "\r\nName: " + CustomerCRUD.getName(BCustomerId) + "\r\nMoney: " + CustomerCRUD.getMoney(BCustomerId);
         }
-        public ICommand ViewCommand
-        {
-            get;
-            private set;
-        }
-
-        private void ViewDetails()
-        {
-          //  BorrowedBooksDetails borrowedBooksDetails = new BorrowedBooksDetails(this.BorrowedBookId);
-          //  borrowedBooksDetails.Show();
-        }
-
-        public ICommand ReturnBookCommand
-        {
-            get;
-            private set;
-        }
-
-        private void ReturnBook()
-        {
-            if (BorrowedBookCRUD.returnBook(BBookId) == true)
-            {
-              //  MessageBox.Show("Borrow record deleted\r\nCurrent customer funds: " + CustomerCRUD.getMoney(BCustomerId));
-            }
-           // else MessageBox.Show("Couldn't return book.");
-        }
-
-        public ICommand EditReturnDateCommand
-        {
-            get;
-            private set;
-        }
-
-        private void EditReturnDate()
-        {
-           // EditReturnDateWindow editReturnDateWindow = new EditReturnDateWindow(this.BorrowedBookId);
-           // editReturnDateWindow.Show();
-        }
+      
     }
 }

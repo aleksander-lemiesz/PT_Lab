@@ -38,6 +38,14 @@ namespace WPFLayer
             _vm.ChildWindow = new Lazy<IWindow>(() => new BorrowBookWindow());
             _vm.ChildWindow2 = new Lazy<IWindow>(() => new BookAddWindow());
             _vm.ChildWindow3 = new Lazy<IWindow>(() => new CustomerAddWindow());
+
+            _vm.ChildWindowBook = new Lazy<IWindow>(() => new BookDetailsWindow(_vm.BookId));
+            _vm.ChildWindowBook2 = new Lazy<IWindow>(() => new BookEditWindow(_vm.BookId));
+            _vm.ChildWindowCustomer = new Lazy<IWindow>(() => new CustomerDetailsWindow(_vm.CustomerId));
+            _vm.ChildWindowCustomer2 = new Lazy<IWindow>(() => new CustomerEditWindow(_vm.CustomerId));
+            _vm.ChildWindowBBook = new Lazy<IWindow>(() => new BorrowedBooksDetails(_vm.BorrowedBookId));
+            _vm.ChildWindowBBook2 = new Lazy<IWindow>(() => new EditReturnDateWindow(_vm.BorrowedBookId));
+         
             
           }
         public void Refresh()
