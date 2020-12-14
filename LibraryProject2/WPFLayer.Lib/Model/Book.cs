@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WPFLayer.Lib.ViewModel;
 
 namespace WPFLayer.Model
 {
@@ -15,7 +16,7 @@ namespace WPFLayer.Model
 
         public Book(int _id)
         {
-            BookViewCommand = new DelegateCommand(BookView);
+            //BookViewCommand = new DelegateCommand(BookView);
             BookDeleteCommand = new DelegateCommand(BookDelete);
             BookEditCommand = new DelegateCommand(BookEdit);
 
@@ -47,8 +48,8 @@ namespace WPFLayer.Model
         public int PenaltyCost { get; set; }
         public DateTime ReturnDate { get; set; }
         public int State { get; set; }
-
-        public ICommand BookViewCommand
+        public Lazy<IWindow> ChildWindow2 { get; set; }
+      /*  public ICommand BookViewCommand
         {
             get;
             private set;
@@ -56,9 +57,9 @@ namespace WPFLayer.Model
 
         private void BookView()
         {
-           // BookDetailsWindow bookDetailsWindow = new BookDetailsWindow(this.BookId);
-           // bookDetailsWindow.Show();
-        }
+            // BookDetailsWindow bookDetailsWindow = new BookDetailsWindow(this.BookId);
+            // bookDetailsWindow.Show();
+        }*/
 
         public ICommand BookDeleteCommand
         {

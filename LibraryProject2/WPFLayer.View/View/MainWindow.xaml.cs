@@ -29,21 +29,22 @@ namespace WPFLayer
         public MainWindow()
         {
             InitializeComponent();
-            //Refresh();
+            Refresh();
         }
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            //ListsViewModel _vm = (ListsViewModel)DataContext;
             DataContext = _vm;
             _vm.ChildWindow = new Lazy<IWindow>(() => new BorrowBookWindow());
-             _vm.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK);
-        }
+            _vm.ChildWindow2 = new Lazy<IWindow>(() => new BookAddWindow());
+            _vm.ChildWindow3 = new Lazy<IWindow>(() => new CustomerAddWindow());
+            
+          }
         public void Refresh()
         {
-            //custs.ItemsSource = _viewModel.GetCustomers();
-            //vbooks.ItemsSource = _viewModel.GetBooks();
-          // bbooks.ItemsSource = _viewModel.GetBorrowedBooks();
+            custs.ItemsSource = _vm.GetCustomers();
+            vbooks.ItemsSource = _vm.GetBooks();
+           bbooks.ItemsSource = _vm.GetBorrowedBooks();
             DataContext = _vm;
         }
      

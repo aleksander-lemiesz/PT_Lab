@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace WPFLayer.Lib.ViewModel
 {
-
+    
     public interface IWindow
     {
+       
         void Show();
     }
 

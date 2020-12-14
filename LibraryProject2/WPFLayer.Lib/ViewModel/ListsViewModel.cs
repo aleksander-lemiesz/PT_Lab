@@ -16,7 +16,6 @@ namespace WPFLayer.ViewModel
 {
     public partial class ListsViewModel : INotifyPropertyChanged
     {
-                // List<Customer> customers;
         public ObservableCollection<Customer> GetCustomers()
         {
             customers = new ObservableCollection<Customer>();
@@ -50,7 +49,6 @@ namespace WPFLayer.ViewModel
         }
         public ListsViewModel()
         {
-
             BorrowBookCommand = new DelegateCommand(BorrowBook);
             BookAddCommand = new DelegateCommand(BookAdd);
             CustomerAddCommand = new DelegateCommand(CustomerAdd);
@@ -77,8 +75,9 @@ namespace WPFLayer.ViewModel
             }
         }
         public Lazy<IWindow> ChildWindow { get; set; }
-        public Action<string> MessageBoxShowDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBoxShowDelegate)} must be assigned by the view layer");
-
+        public Lazy<IWindow> ChildWindow2 { get; set; }
+        public Lazy<IWindow> ChildWindow3 { get; set; }
+      
         public ICommand BorrowBookCommand
         {
             get;
@@ -90,25 +89,7 @@ namespace WPFLayer.ViewModel
             IWindow _child = ChildWindow.Value;
             _child.Show();
         }
-        public ICommand DisplayTextCommand
-        {
-            get; private set;
-        }
-        private string m_ActionText;
-        public string ActionText
-        {
-            get => m_ActionText;
-            set
-            {
-                m_ActionText = value;/*
-                DisplayTextCommand.RaiseCanExecuteChanged();
-                RaisePropertyChanged();*/
-            }
-        }
-        private void ShowPopupWindow()
-        {
-            MessageBoxShowDelegate(ActionText);
-        }
+       
         public ICommand BookAddCommand
         {
             get;
@@ -117,8 +98,8 @@ namespace WPFLayer.ViewModel
 
         private void BookAdd()
         {
-         //   BookAddWindow bookAddWindow = new BookAddWindow();
-          //  bookAddWindow.Show();
+            IWindow _child = ChildWindow2.Value;
+            _child.Show();
         }
         public ICommand BookSaveCommand
         {
@@ -130,9 +111,7 @@ namespace WPFLayer.ViewModel
         {
             int _id = BookCRUD.getMaxId() + 1;
             BookCRUD.addBook(_id, this.Title, this.Author, this.Type, this.PenaltyCost, this.ReturnDate, this.State);
-          //  MessageBox.Show("Book " + this.Title + " added.");
-
-        }
+         }
         public ICommand CustomerAddCommand
         {
             get;
@@ -141,9 +120,9 @@ namespace WPFLayer.ViewModel
 
         private void CustomerAdd()
         {
-           
-          //  CustomerAddWindow customerAddWindow = new CustomerAddWindow();
-         //  customerAddWindow.Show();
+
+            IWindow _child = ChildWindow3.Value;
+            _child.Show();
         }
         public ICommand CustomerSaveCommand
         {
@@ -154,7 +133,6 @@ namespace WPFLayer.ViewModel
         private void CustomerSave()
         {
             CustomerCRUD.addCustomer(this.CustomerId, this.Name, this.Money);
-          //  MessageBox.Show("Customer " + this.Name + " added.");
 
         }
 
