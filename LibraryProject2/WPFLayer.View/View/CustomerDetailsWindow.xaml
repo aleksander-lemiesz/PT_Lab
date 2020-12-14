@@ -1,0 +1,36 @@
+﻿<Window
+    x:Class="WPFLayer.View.CustomerDetailsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFLayer.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="CustomerDetailsWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <StackPanel Background="LightYellow">
+        <StackPanel Margin="3" Orientation="Horizontal">
+            <TextBlock
+                FontSize="16"
+                FontWeight="Bold"
+                Text="ID: " />
+            <TextBlock FontSize="16" Text="{Binding CustomerId}" />
+        </StackPanel>
+        <StackPanel Margin="3" Orientation="Horizontal">
+            <TextBlock
+                FontSize="16"
+                FontWeight="Bold"
+                Text="Name: " />
+            <TextBlock FontSize="16" Text="{Binding Name}" />
+        </StackPanel>
+        <StackPanel Margin="3" Orientation="Horizontal">
+            <TextBlock
+                FontSize="16"
+                FontWeight="Bold"
+                Text="Current Balance: " />
+            <TextBlock FontSize="16" Text="{Binding Money}" />
+        </StackPanel>
+
+    </StackPanel>
+</Window>

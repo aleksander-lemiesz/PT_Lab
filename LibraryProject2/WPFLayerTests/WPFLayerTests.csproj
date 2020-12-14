@@ -61,9 +61,9 @@
       <Project>{34ff01ff-6e3d-43b2-b392-9c986756f62a}</Project>
       <Name>ServicesLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WPFLayer\WPFLayer.csproj">
-      <Project>{de559ca3-3b33-40a3-9548-2c3565bdc560}</Project>
-      <Name>WPFLayer</Name>
+    <ProjectReference Include="..\WPFLayer.Lib\WPFLayer.Lib.csproj">
+      <Project>{63aa0c43-ee37-4c03-bc73-a060b0727f31}</Project>
+      <Name>WPFLayer.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

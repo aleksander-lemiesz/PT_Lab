@@ -72,9 +72,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Library.mdf">
+    <None Include="Library.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="Library_log.ldf">
       <DependentUpon>Library.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
